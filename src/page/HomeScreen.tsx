@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
-
 function HomeScreen() {
 
   return (
 		<HomeScreenBox>
 			<HomeScreens>
-				<SearchBar />
+				<SearchBar/>
 				<ArticleList>
-					<Article></Article>
+					<Article/>
 				</ArticleList>
 			</HomeScreens>
 		</HomeScreenBox>
@@ -21,6 +20,7 @@ export default HomeScreen
 const HomeScreenBox = styled.section`
 	width: 100%;
 	height: 100%;
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -36,6 +36,8 @@ const HomeScreens = styled.main`
 `;
 
 const ArticleList = styled.div`
+	display: flex;
+	flex-direction: column;
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-left: 20px;

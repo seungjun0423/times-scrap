@@ -28,6 +28,7 @@ const FilterBox = styled.div`
 	border: 1px solid #C4C4C4;
 	border-radius: 30px;
 	gap: 4px;
+	cursor: pointer;
 `;
 
 const Icon = styled.img`
