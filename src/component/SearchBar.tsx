@@ -3,15 +3,25 @@ import Filter from "./ui/Filter";
 import search from "@/assets/svg/search.svg";
 import calendar from "@/assets/svg/calendar.svg";
 
+type SearchBarList = {
+	key: string;
+	svg: string;
+	text: string;
+};
 
 function SearchBar() {
+	const list: SearchBarList[]  = [ 
+			{ key: "HeadLine", svg: search, text: "전체 헤드라인" }, 
+			{ key: "Date", svg: calendar, text: "전체 날짜" }, 
+			{ key: "Nation",svg: "", text: "전체 국가" } 
+	];
 
   return (
     <SearchBox>
 			<UiBox>
-				<Filter key={"HeadLine"} svg={search} text={'전체 헤드라인'}/>
-				<Filter key={"Date"} svg={calendar} text={'전체 날짜'}/>
-				<Filter key={"Nation"} svg={''} text={'전체 국가'}/>
+				{list.map(el=>{
+					return <Filter key={el.key} svg={el.svg} text={el.text} />
+				})}
 			</UiBox>
     </SearchBox>
   )

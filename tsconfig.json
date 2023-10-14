@@ -14,7 +14,8 @@
 			"@model/*":["model/*"],
 			"@style/*":["style/*"],
 			"@types/*":["types/*"],
-	},
+		},
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
