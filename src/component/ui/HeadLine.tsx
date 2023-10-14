@@ -41,5 +41,4 @@ const Text = styled.div`
 	font-weight: 400;
 	letter-spacing: -0.04em;
 	font-family: Apple SD Gothic Neo;
-
 `;

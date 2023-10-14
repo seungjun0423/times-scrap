@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import HeadLine from "./ui/HeadLine";
+import Date from "./ui/Date";
+import Nation from "./ui/Nation";
 function SearchBar() {
 
   return (
     <SearchBox>
 			<UiBox>
-				<HeadLine />
+				<HeadLine/>
+				<Date/>
+				<Nation/>
 			</UiBox>
     </SearchBox>
   )
