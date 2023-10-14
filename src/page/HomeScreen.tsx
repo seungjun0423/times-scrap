@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Filter from "@/component/Filter";
+import SearchBar from "@/component/SearchBar";
 function HomeScreen() {
 
   return (
 		<HomeScreenLayout>
 			<HomeScreens>
-				<Filter />
+				<SearchBar />
 			</HomeScreens>
 		</HomeScreenLayout>
   )

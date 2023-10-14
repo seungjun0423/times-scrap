@@ -6,4 +6,4 @@ function ScrapScreen() {
   )
 }
 
-export default ScrapScreen
+export default ScrapScreen;
