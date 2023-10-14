@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import SearchBar from "@/component/SearchBar";
+import Article from "@/component/Article";
+
 function HomeScreen() {
 
   return (
 		<HomeScreenBox>
 			<HomeScreens>
 				<SearchBar />
+				<ArticleList>
+					<Article></Article>
+				</ArticleList>
 			</HomeScreens>
 		</HomeScreenBox>
   )
@@ -28,4 +33,10 @@ const HomeScreens = styled.div`
 	max-height: 768px;
 	background-color: #F0F1F4;
 	border-radius: 30px;
+`;
+
+const ArticleList = styled.div`
+	padding-top: 20px;
+	padding-left: 20px;
+	gap: 8px;
 `;
