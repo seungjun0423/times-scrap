@@ -3,14 +3,14 @@ import styled from "styled-components";
 function Filter() {
 
   return (
-    <Layout>
-    </Layout>
+    <FilterLayout>
+    </FilterLayout>
   )
 }
 
 export default Filter;
 
-const Layout = styled.div`
+const FilterLayout = styled.div`
 	width: 375px;
 	height: 60px;
 	margin-top: 44px;

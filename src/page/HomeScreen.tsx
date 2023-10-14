@@ -1,10 +1,12 @@
 import styled from "styled-components";
-
+import Filter from "@/component/Filter";
 function HomeScreen() {
 
   return (
 		<HomeScreenLayout>
-			<HomeScreens/>
+			<HomeScreens>
+				<Filter />
+			</HomeScreens>
 		</HomeScreenLayout>
   )
 }
