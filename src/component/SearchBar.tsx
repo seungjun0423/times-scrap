@@ -1,24 +1,18 @@
 import styled from "styled-components";
 
-function Filter() {
+function SearchBar() {
 
   return (
-    <FilterBox>
-			<SearchBox>
-
-			</SearchBox>
-    </FilterBox>
+    <SearchBox>
+    </SearchBox>
   )
 }
 
-export default Filter;
+export default SearchBar;
 
-const FilterBox = styled.div`
+const SearchBox = styled.div`
 	width: 375px;
 	height: 60px;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #C4C4C4;
-`;
-
-const SearchBox = styled.div`
 `;
