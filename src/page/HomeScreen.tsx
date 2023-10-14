@@ -1,7 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
+import Modal from "@/component/ui/Modal";
+
 function HomeScreen() {
+	const [modalState, setModalState] = useState<boolean>(false);
 
   return (
 		<HomeScreenBox>
@@ -11,6 +15,7 @@ function HomeScreen() {
 					<Article/>
 				</ArticleList>
 			</HomeScreens>
+			<Modal modalState={modalState}/>
 		</HomeScreenBox>
   )
 }
@@ -22,6 +27,7 @@ const HomeScreenBox = styled.section`
 	height: 100%;
 	position: relative;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 `;
