@@ -12,7 +12,8 @@
 			"@components/*":["components/*"],
 			"@hooks/*":["hooks/*"],
 			"@model/*":["model/*"],
-			"@style/*":["style/*"]
+			"@style/*":["style/*"],
+			"@types/*":["types/*"],
 	},
     /* Bundler mode */
     "moduleResolution": "bundler",
