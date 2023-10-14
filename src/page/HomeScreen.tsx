@@ -3,17 +3,17 @@ import SearchBar from "@/component/SearchBar";
 function HomeScreen() {
 
   return (
-		<HomeScreenLayout>
+		<HomeScreenBox>
 			<HomeScreens>
 				<SearchBar />
 			</HomeScreens>
-		</HomeScreenLayout>
+		</HomeScreenBox>
   )
 }
 
 export default HomeScreen
 
-const HomeScreenLayout = styled.section`
+const HomeScreenBox = styled.section`
 	width: 100%;
 	height: 100%;
 	display: flex;

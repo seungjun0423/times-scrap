@@ -3,17 +3,17 @@ import styled from "styled-components";
 function Filter() {
 
   return (
-    <FilterLayout>
+    <FilterBox>
 			<SearchBox>
 
 			</SearchBox>
-    </FilterLayout>
+    </FilterBox>
   )
 }
 
 export default Filter;
 
-const FilterLayout = styled.div`
+const FilterBox = styled.div`
 	width: 375px;
 	height: 60px;
 	background-color: #FFFFFF;
