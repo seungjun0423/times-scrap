@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { SearchBarList } from "@/types/HomeScreenType";
 
-function Filter( props : { svg: string, text: string }) {
-	const {svg, text} = props;
+function Filter( props: Omit<SearchBarList, "key">) {
+	const { svg, text } = props;
 
   return (
     <FilterBox>
