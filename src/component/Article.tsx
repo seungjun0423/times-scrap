@@ -5,7 +5,7 @@ function Article() {
 
   return (
     <ArticleBox>
-			
+
 			<TitleBox>
 				<Title>
 					국방부 “北, 화성-17 실패 만회하려 영상 짜깁기… 성공 조작”
@@ -16,6 +16,17 @@ function Article() {
 			</TitleBox>
 
 			<SourceData>
+				<Published>
+					<Source>
+						조선일보
+					</Source>
+					<Source>
+						김정환 기자
+					</Source>
+				</Published>
+				<Date>
+					2021.3.15. (목)
+				</Date>
 			</SourceData>
     </ArticleBox>
   )
@@ -24,8 +35,10 @@ function Article() {
 export default Article;
 
 const ArticleBox = styled.div`
-	width: auto;
-	height: auto;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 	padding-top: 10px;
 	padding-right: 20px;
 	padding-bottom: 10px;
@@ -36,8 +49,8 @@ const ArticleBox = styled.div`
 `;
 
 const TitleBox = styled.div`
-	width: 295px;
-	height: 56px;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: space-between;
 `;
@@ -52,7 +65,6 @@ const Title = styled.div`
 	letter-spacing: -0.05em;
 `;
 
-
 const IconBox = styled.div`
 	width: 24px;
 	height: 24px;
@@ -66,6 +78,29 @@ const Icon = styled.img`
 `;
 
 const SourceData = styled.div`
-	width: 295px;
+	width: 100%;
 	height: 20px;
+	display: flex;
+	justify-content: space-between;
+`;
+
+const Published = styled.div`
+	display: flex;
+	gap: 8px;
+`;
+
+const Source = styled.span`
+	color: #000000;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: -0.05em;
+`;
+
+const Date = styled.span`
+	color: #6D6D6D;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: -0.05em;
 `;

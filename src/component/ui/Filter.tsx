@@ -35,9 +35,9 @@ const Icon = styled.img`
 	height: 16px;
 `;
 
-const Text = styled.div`
-	width: auto;
-	height: auto;
+const Text = styled.span`
+	width: 100%;
+	height: 100%;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	color: #6D6D6D;

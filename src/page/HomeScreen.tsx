@@ -26,7 +26,7 @@ const HomeScreenBox = styled.section`
 	justify-content: center;
 `;
 
-const HomeScreens = styled.div`
+const HomeScreens = styled.main`
 	width: 100%;
 	max-width: 375px;
 	height: 100%;
