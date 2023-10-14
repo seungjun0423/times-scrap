@@ -8,7 +8,7 @@
 		"baseUrl": "src", 
 		"paths": {
 			"@/*": ["*"],
-			"@pages/*": ["pages/*"],
+			"@page/*": ["page/*"],
 			"@components/*":["components/*"],
 			"@hooks/*":["hooks/*"],
 			"@model/*":["model/*"],
