@@ -1,21 +1,21 @@
 import styled from "styled-components";
-import search from "@/assets/svg/search.svg";
 
-function HeadLine() {
+function Filter( props : { svg: string, text: string }) {
+	const {svg, text} = props;
 
   return (
-    <HeadLineBox>
-			<Icon src={search}/>
+    <FilterBox>
+			{svg ? <Icon src={svg}/>: <></>}
 			<Text>
-				전체 헤드라인
+				{text}
 			</Text>
-    </HeadLineBox>
+    </FilterBox>
   )
 }
 
-export default HeadLine;
+export default Filter;
 
-const HeadLineBox = styled.div`
+const FilterBox = styled.div`
 	width: auto;
 	height: auto;
 	display: flex;
@@ -35,13 +35,12 @@ const Icon = styled.img`
 `;
 
 const Text = styled.div`
-	width: 73px;
-	height: 24px;
-	display: flex;
-	align-items: center;
+	width: auto;
+	height: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	color: #6D6D6D;
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: -0.04em;
-	font-family: Apple SD Gothic Neo;
 `;

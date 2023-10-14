@@ -1,15 +1,17 @@
 import styled from "styled-components";
-import HeadLine from "./ui/HeadLine";
-import Date from "./ui/Date";
-import Nation from "./ui/Nation";
+import Filter from "./ui/Filter";
+import search from "@/assets/svg/search.svg";
+import calendar from "@/assets/svg/calendar.svg";
+
+
 function SearchBar() {
 
   return (
     <SearchBox>
 			<UiBox>
-				<HeadLine/>
-				<Date/>
-				<Nation/>
+				<Filter key={"HeadLine"} svg={search} text={'전체 헤드라인'}/>
+				<Filter key={"Date"} svg={calendar} text={'전체 날짜'}/>
+				<Filter key={"Nation"} svg={''} text={'전체 국가'}/>
 			</UiBox>
     </SearchBox>
   )
