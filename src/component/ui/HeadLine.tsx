@@ -16,11 +16,14 @@ function HeadLine() {
 export default HeadLine;
 
 const HeadLineBox = styled.div`
-	width: 117px;
-	height: 34px;
+	width: auto;
+	height: auto;
 	display: flex;
 	align-items: center;
+	padding-top: 6px;
+	padding-bottom: 4px;
 	padding-left: 12px;
+	padding-right: 12px;
 	border: 1px solid #C4C4C4;
 	border-radius: 30px;
 	gap: 4px;

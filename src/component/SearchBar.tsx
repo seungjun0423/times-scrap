@@ -30,4 +30,5 @@ const UiBox = styled.div`
 	display: flex;
 	align-items: center;
 	padding-left: 20px;
+	gap: 7px;
 `;
