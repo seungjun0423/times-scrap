@@ -25,7 +25,7 @@ const HomeScreens = styled.div`
 	width: 100%;
 	max-width: 375px;
 	height: 100%;
-	max-height: 812px;
+	max-height: 768px;
 	background-color: #F0F1F4;
 	border-radius: 30px;
 `;

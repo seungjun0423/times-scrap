@@ -4,6 +4,9 @@ function Filter() {
 
   return (
     <FilterLayout>
+			<SearchBox>
+
+			</SearchBox>
     </FilterLayout>
   )
 }
@@ -13,6 +16,9 @@ export default Filter;
 const FilterLayout = styled.div`
 	width: 375px;
 	height: 60px;
-	margin-top: 44px;
 	background-color: #FFFFFF;
+	border-bottom: 1px solid #C4C4C4;
+`;
+
+const SearchBox = styled.div`
 `;
