@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import SearchInput from "./ui/SearchInput";
+import HeadLine from "./ui/HeadLine";
 function SearchBar() {
 
   return (
     <SearchBox>
 			<UiBox>
-				<SearchInput />
+				<HeadLine />
 			</UiBox>
     </SearchBox>
   )
