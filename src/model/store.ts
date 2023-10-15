@@ -6,17 +6,26 @@ type TmodalStore = {
 };
 
 type TfilterStore = {
-	filter: {
+	filterState: {
 		headline: string;
 		date: string;
-		nation: string[]
+		nation: object[]
 	};
-	setModalState: () => void;
+	setFilterState: () => void;
 }
 
 const modalStore = create<TmodalStore>((set) => ({
 	modalState: false,
 	setModalState: () => set((state) => ({ modalState: !state.modalState})),
-}))
+}));
 
-export { modalStore };
+const filterStore = create<TfilterStore>((set) => ({
+	filterState: {
+		headline: '',
+		date: '',
+		nation: []
+	},
+	setFilterState: () => set({}),
+}));
+
+export { modalStore, filterStore };
