@@ -9,16 +9,15 @@ import Modal from "@/component/ui/Modal";
 const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
 
 function HomeScreen() {
-	
 	// const [modalState, setModalState] = useState<boolean>(false);
 	useEffect(() => {
 		const testFn = async () => {
 			const test = await axios.get(
 				// "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=headline:('') AND National:('')&api-key=");
-				`${VITE_API_URL}fq=headline:('war')&api-key=${VITE_API_KEY}`);
-			console.log(test.data.response);
+				`${VITE_API_URL}begin_date=${20210909}&end_date=${20231010}&fq=headline:(${'food'}) AND glocations:(${"india"})&api-key=${VITE_API_KEY}`);
+			// console.log(test.data.response.docs);
 		}
-		testFn();
+		// testFn();
 	}, [])
 
   return (

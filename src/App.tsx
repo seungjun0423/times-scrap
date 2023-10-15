@@ -1,12 +1,23 @@
 import GlobalStyle from "@style/GlobalStyle";
 import HomeScreen from "@page/HomeScreen";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
 
   return (
     <>
-		<GlobalStyle/>
-		<HomeScreen/>
+			<QueryClientProvider client={queryClient}>
+				<GlobalStyle/>
+				<HomeScreen/>
+			</QueryClientProvider>
     </>
   )
 }
