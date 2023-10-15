@@ -5,7 +5,7 @@ import Article from "@/component/Article";
 import Modal from "@/component/ui/Modal";
 
 function HomeScreen() {
-	const [modalState, setModalState] = useState<boolean>(true);
+	const [modalState, setModalState] = useState<boolean>(false);
 
   return (
 		<HomeScreenBox>

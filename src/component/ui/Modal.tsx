@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Modal(props : { modalState: boolean }) {
 	const { modalState } = props;
+	const nationList: string[] = [ "대한민국", "중국", "일본", "미국", "북한", "러시아", "프랑스", "영국", "북한"];
 
   return (
 		<>
@@ -29,11 +30,20 @@ function Modal(props : { modalState: boolean }) {
 							국가
 						</Label>
 						<NationListBox>
-							<NationBtn>
-								대한민국
-							</NationBtn>
+							{ nationList.map((el:string) => {
+									return (
+										<NationBtn>
+											{el}
+										</NationBtn>
+								)})
+							}
 						</NationListBox>
 					</Sector>
+					<SubmitBtn>
+						<Div>
+							필터 적용하기
+						</Div>
+					</SubmitBtn>
 				</InputBox>
 			</ModalBox>
 		:<></>}
@@ -54,10 +64,12 @@ const ModalBox = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
 `;
 
 const InputBox = styled.div`
-	width: 335px;
+	width: 100%;
 	height: 480px;
 	display: flex;
 	flex-direction: column;
@@ -68,12 +80,15 @@ const InputBox = styled.div`
 `;
 
 const Sector = styled.div`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 `;
 
 const Label = styled.label`
+	width: fit-content;
+	height: 24px;
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 24px;
@@ -81,7 +96,7 @@ const Label = styled.label`
 `;
 
 const InputHeadLine = styled.input.attrs({type: "text", placeholder: "검색하실 헤드라인을 입력해주세요." })`
-	width: 295px;
+	width: 100%;
 	height: 44px;
 	padding-top: 10px;
 	padding-right: 20px;
@@ -102,7 +117,7 @@ const InputHeadLine = styled.input.attrs({type: "text", placeholder: "검색하�
 `;
 
 const DatePicker = styled.input`
-	width: 295px;
+	width: 100%;
 	height: 44px;
 	display:flex;
 	justify-content: space-between;
@@ -114,7 +129,6 @@ const DatePicker = styled.input`
 	border-radius: 8px;
 	border: 1px solid #C4C4C4;
 	outline: none;
-
 
 	&[type='date']::before {
 		content: attr(data-placeholder);
@@ -134,17 +148,16 @@ const DatePicker = styled.input`
 		width: 30px;
 		height: 25px;
 		border-width: thin;
+		cursor: pointer;
 	}
 `;
 
 const NationListBox = styled.div`
 	display: flex;
-	gap: 8px;
+	flex-wrap: wrap;
 `;
 
 const NationBtn = styled.div`
-	/* width: 100%; */
-	/* height: 100%; */
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 24px;
@@ -156,4 +169,31 @@ const NationBtn = styled.div`
 	padding-right: 12px;
 	padding-bottom: 4px;
 	padding-left: 12px;
+	color: #6D6D6D;
+	margin-right: 4px;
+	margin-bottom: 4px;
+
+	&:nth-child(6),:nth-child(7),:nth-child(8), :nth-child(9) {
+		margin-bottom:0;
+	}
+`;
+
+const SubmitBtn = styled.button`
+	width: 100%;
+	height: 60px;
+	border-radius: 16px;
+	border: none;
+	background: #3478F6;
+`;
+
+const Div = styled.div`
+	width: 100%;
+	height: 24px;
+	color: #FFFFFF;
+	font-size: 16px;
+	/* font-weight: 600; */
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: -0.05em;
+	text-align: center;
 `;
