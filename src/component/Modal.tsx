@@ -22,6 +22,17 @@ function Modal() {
 		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
 
+	const bClickHandler = () => {
+		setHeadline('');
+		setDate('');
+		setNation([
+			...nation.map( el => { 
+				el.isSelected=false 
+			return el;
+		})]);
+		setModalState();
+	}
+
 	const nSelectHandler = ( index: number ) => {
 		nation[index].isSelected = !nation[index].isSelected;
 		setNation([...nation]);
@@ -40,7 +51,7 @@ function Modal() {
   return (
 		<>
 		{modalState ?
-			<ModalBox onClick={setModalState}>
+			<ModalBox onClick={bClickHandler}>
 				<InputBox onClick={(e) => e.stopPropagation()}>
 
 					<Sector key="headline">

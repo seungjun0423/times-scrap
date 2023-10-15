@@ -17,7 +17,7 @@ type TfilterStore = {
 		input: {
 			headline: string;
 			date: string;
-			nation: TnationList[]
+			nation: string | TnationList[]
 		}) => void;
 }
 
