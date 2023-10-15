@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
@@ -6,6 +6,7 @@ import Article from "@/component/Article";
 import Modal from "@/component/ui/Modal";
 import { getTodayHeadLine } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
+// import moment from "moment-timezone";
 
 function HomeScreen() {
 	// const [modalState, setModalState] = useState<boolean>(false);
@@ -13,25 +14,22 @@ function HomeScreen() {
   //   queryKey: ['article'],
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
-
-	const { data } = useQuery({
-    queryKey: [`todayHeadline`],
-    queryFn: getTodayHeadLine,
-  });
+	// const { data } = useQuery({
+  //   queryKey: [`todayHeadline`],
+  //   queryFn: getTodayHeadLine
+  // });
 	// console.log(data.headline.main);
 	// console.log(data.source);
 	// console.log(data.byline.original);
-	// console.log(data.pub_date);
 	// console.log(data);
 	// console.log(new Date());
-	
 
   return (
 		<HomeScreenBox>
 			<HomeScreens>
 				<SearchBar/>
 				<ArticleList>
-					{
+					{/* {
 						data?.map( (el: TarticleData , index: number) =>{
 							const article = {
 								headLine: el.headline.main,
@@ -41,7 +39,7 @@ function HomeScreen() {
 							}
 							return <Article key={index}article={article}/>
 						})
-					}
+					} */}
 				</ArticleList>
 			</HomeScreens>
 			<Modal modalState={false}/>
