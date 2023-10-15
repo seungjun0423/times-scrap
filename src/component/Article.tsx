@@ -24,9 +24,9 @@ function Article() {
 						김정환 기자
 					</Source>
 				</Published>
-				<Date>
+				<PubDate>
 					2021.3.15. (목)
-				</Date>
+				</PubDate>
 			</SourceData>
     </ArticleBox>
   )
@@ -97,7 +97,7 @@ const Source = styled.span`
 	letter-spacing: -0.05em;
 `;
 
-const Date = styled.span`
+const PubDate = styled.span`
 	color: #6D6D6D;
 	font-size: 13px;
 	font-weight: 400;

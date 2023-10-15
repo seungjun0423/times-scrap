@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { SearchBarList } from "@/types/HomeScreenType";
+import { TsearchBarList } from "@/types/HomeScreenType";
 
-function Filter( props: Omit<SearchBarList, "key">) {
+function Filter( props: Omit<TsearchBarList, "key">) {
 	const { svg, text } = props;
 
   return (

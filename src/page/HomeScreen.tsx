@@ -1,11 +1,23 @@
 // import { useState } from "react";
 import styled from "styled-components";
+import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/ui/Modal";
+import { getArticle, getTodayHeadLine } from "@/api/api"; 
 
 function HomeScreen() {
 	// const [modalState, setModalState] = useState<boolean>(false);
+	// const { isLoading, isError, data, error } = useQuery({
+  //   queryKey: ['article'],
+  //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
+  // });
+
+	const { isLoading, isError, data, error } = useQuery({
+    queryKey: ['todayHeadline'],
+    queryFn: getTodayHeadLine,
+  });
+	
 
   return (
 		<HomeScreenBox>

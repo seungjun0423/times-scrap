@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Filter from "./ui/Filter";
 import search from "@/assets/svg/search.svg";
 import calendar from "@/assets/svg/calendar.svg";
-import { SearchBarList } from "@/types/HomeScreenType";
+import { TsearchBarList } from "@/types/HomeScreenType";
 
 function SearchBar() {
-	const list: SearchBarList[]  = [ 
+	const list: TsearchBarList[]  = [ 
 			{ key: "HeadLine", svg: search, text: "전체 헤드라인" }, 
 			{ key: "Date", svg: calendar, text: "전체 날짜" }, 
 			{ key: "Nation", svg: "", text: "전체 국가" }, 

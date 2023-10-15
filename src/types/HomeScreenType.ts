@@ -1,10 +1,14 @@
-export type SearchBarList = {
+type TsearchBarList = {
 	key: string;
 	svg: string;
 	text: string;
 };
 
-export type ArticleType = {
+type Tarticle = {
 	headLine: string;
-	
-}
+	newspaper: string;
+	reporter: string;
+	pubDate: string;
+};
+
+export type { TsearchBarList, Tarticle};
