@@ -11,7 +11,13 @@ type TfilterStore = {
 		date: string;
 		nation: object[]
 	};
-	setFilterState: () => void;
+	
+	setFilterState: (
+		input: {
+			headline: string;
+			date: string;
+			nation: object[]
+		}) => void;
 }
 
 const modalStore = create<TmodalStore>((set) => ({
@@ -25,7 +31,7 @@ const filterStore = create<TfilterStore>((set) => ({
 		date: '',
 		nation: []
 	},
-	setFilterState: () => set({}),
+	setFilterState: (input) => set({filterState: input}),
 }));
 
 export { modalStore, filterStore };

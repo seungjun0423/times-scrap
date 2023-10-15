@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { modalStore } from "@/model/store";
+import { modalStore, filterStore } from "@/model/store";
 
 type TnationList = {
 		nation: string;
@@ -11,17 +11,36 @@ type TnationList = {
 function Modal() {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 	const modalState = modalStore( state => state.modalState);
+	const filterState = filterStore( state => state.filterState);
+	const setFilterState = filterStore( state => state.setFilterState);
 	const setModalState = modalStore( state => state.setModalState);
-	const [headLine, setHeadLine] = useState<string>('');
+	const [headline, setHeadline] = useState<string>('');
 	const [date, setDate] = useState<string>('');
 	const [nation, setNation] = useState<TnationList[]>([ 
-		{nation: "대한민국", isSelected: false, en: "south korea"}, {nation: "중국", isSelected: false, en: "china"}, {nation: "일본", isSelected: false, en: "japan"}, {nation: "미국", isSelected: false, en: "usa"}, {nation: "북한", isSelected: false, en: "north korea"}, {nation: "러시아", isSelected: false, en: "russia"}, {nation: "프랑스", isSelected: false, en: "france"}, {nation: "영국", isSelected: false, en: "england"}, {nation:"북한", isSelected: false, en: "north korea"}
+		{nation: "대한민국", isSelected: false, en: "south korea"},
+		{nation: "중국", isSelected: false, en: "china"}, 
+		{nation: "일본", isSelected: false, en: "japan"}, 
+		{nation: "미국", isSelected: false, en: "usa"}, 
+		{nation: "북한", isSelected: false, en: "north korea"}, 
+		{nation: "러시아", isSelected: false, en: "russia"}, 
+		{nation: "프랑스", isSelected: false, en: "france"}, 
+		{nation: "영국", isSelected: false, en: "england"}, 
+		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
 
 	const nSelectHandler = ( index: number ) => {
 		nation[index].isSelected = !nation[index].isSelected;
 		setNation([...nation]);
-	}	
+	};
+	
+	const filterHandler = () => {
+		const filterData = {
+			headline: headline,
+			date: date,
+			nation: nation.filter(el=> el.isSelected)
+		};
+		setFilterState(filterData);
+	};
 
   return (
 		<>
@@ -29,12 +48,12 @@ function Modal() {
 			<ModalBox onClick={setModalState}>
 				<InputBox onClick={(e) => e.stopPropagation()}>
 
-					<Sector key="headLine">
+					<Sector key="headline">
 						<Label>
 							{labels[0]}
 						</Label>
-						<InputHeadLine 
-							onChange={e=>{setHeadLine(e.target.value)}}
+						<InputHeadline 
+							onChange={e=>{setHeadline(e.target.value)}}
 						/>
 					</Sector>
 
@@ -70,7 +89,7 @@ function Modal() {
 							}
 						</NationListBox>
 					</Sector>
-					<SubmitBtn>
+					<SubmitBtn onClick={filterHandler}>
 						<Div>
 							{labels[3]}
 						</Div>
@@ -126,7 +145,7 @@ const Label = styled.label`
 	letter-spacing: -0.05em;
 `;
 
-const InputHeadLine = styled.input.attrs({type: "text", placeholder: "검색하실 헤드라인을 입력해주세요." })`
+const InputHeadline = styled.input.attrs({type: "text", placeholder: "검색하실 헤드라인을 입력해주세요." })`
 	width: 100%;
 	height: 44px;
 	padding-top: 10px;
