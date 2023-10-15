@@ -45,7 +45,7 @@ function HomeScreen() {
 					} */}
 				</ArticleList>
 			</HomeScreens>
-			<Modal modalState={modalState}/>
+			<Modal/>
 		</HomeScreenBox>
   )
 }

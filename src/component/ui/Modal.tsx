@@ -1,37 +1,39 @@
 import styled from "styled-components";
+import { modalStore } from "@/model/store";
 
-function Modal(props : { modalState: boolean }) {
-	const { modalState } = props;
+function Modal() {
 	const nationList: string[] = [ "대한민국", "중국", "일본", "미국", "북한", "러시아", "프랑스", "영국", "북한"];
+	const modalState = modalStore( state => state.modalState);
+	const setModalState = modalStore( state => state.setModalState);
 
   return (
 		<>
 		{modalState ?
-			<ModalBox>
-				<InputBox>
+			<ModalBox onClick={setModalState}>
+				<InputBox onClick={(e) => e.stopPropagation()}>
 
-					<Sector>
+					<Sector key="headLine">
 						<Label>
 							헤드라인
 						</Label>
 						<InputHeadLine/>
 					</Sector>
 
-					<Sector>
+					<Sector key="date">
 						<Label>
 							날짜
 						</Label>
 						<DatePicker type="date" data-placeholder="날짜를 선택해주세요"/>
 					</Sector>
 
-					<Sector>
+					<Sector key="nation">
 						<Label>
 							국가
 						</Label>
 						<NationListBox>
-							{ nationList.map((el:string) => {
+							{ nationList.map((el:string, index: number) => {
 									return (
-										<NationBtn>
+										<NationBtn key={index}>
 											{el}
 										</NationBtn>
 								)})
