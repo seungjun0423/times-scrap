@@ -4,6 +4,13 @@ type TsearchBarList = {
 	text: string;
 };
 
+type TarticleData = { 
+	headline: { main: string; }; 
+	source: string; 
+	byline: { original: string; }; 
+	pub_date: string; 
+}
+
 type Tarticle = {
 	headLine: string;
 	newspaper: string;
@@ -11,4 +18,4 @@ type Tarticle = {
 	pubDate: string;
 };
 
-export type { TsearchBarList, Tarticle};
+export type { TsearchBarList, TarticleData, Tarticle };

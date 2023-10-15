@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/ui/Modal";
-import { getArticle, getTodayHeadLine } from "@/api/api"; 
+import { getTodayHeadLine } from "@/api/api"; 
+import { TarticleData } from "@/types/HomeScreenType";
 
 function HomeScreen() {
 	// const [modalState, setModalState] = useState<boolean>(false);
@@ -22,7 +23,7 @@ function HomeScreen() {
 	// console.log(data.byline.original);
 	// console.log(data.pub_date);
 	// console.log(data);
-	console.log(new Date());
+	// console.log(new Date());
 	
 
   return (
@@ -31,7 +32,7 @@ function HomeScreen() {
 				<SearchBar/>
 				<ArticleList>
 					{
-						data?.map( (el, index: number) =>{
+						data?.map( (el: TarticleData , index: number) =>{
 							const article = {
 								headLine: el.headline.main,
 								newspaper: el.source,
