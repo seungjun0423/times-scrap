@@ -34,7 +34,7 @@ const SearchBox = styled.div`
 `;
 
 const UiBox = styled.div`
-	width: 100%;
+	width: fit-content;
 	height: 100%;
 	display: flex;
 	align-items: center;

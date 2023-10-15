@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
@@ -6,10 +6,13 @@ import Article from "@/component/Article";
 import Modal from "@/component/ui/Modal";
 import { getTodayHeadLine } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
+import { modalStore } from "@/model/store";
 // import moment from "moment-timezone";
 
 function HomeScreen() {
-	// const [modalState, setModalState] = useState<boolean>(false);
+	const modalState = modalStore(state=>state.modalState);
+	// const setModalState = modalStore(state=>state.setModalState);
+	// console.log(modalState);
 	// const { isLoading, isError, data, error } = useQuery({
   //   queryKey: ['article'],
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
@@ -42,7 +45,7 @@ function HomeScreen() {
 					} */}
 				</ArticleList>
 			</HomeScreens>
-			<Modal modalState={false}/>
+			<Modal modalState={modalState}/>
 		</HomeScreenBox>
   )
 }
