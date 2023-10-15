@@ -18,4 +18,12 @@ type Tarticle = {
 	pubDate: string;
 };
 
-export type { TsearchBarList, TarticleData, Tarticle };
+
+type TnationList = {
+	nation: string;
+	isSelected: boolean;
+	en: string;
+}
+
+
+export type { TsearchBarList, TarticleData, Tarticle, TnationList };

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { TnationList } from '@/types/HomeScreenType';
 
 type TmodalStore = {
 	modalState: boolean;
@@ -9,14 +10,14 @@ type TfilterStore = {
 	filterState: {
 		headline: string;
 		date: string;
-		nation: object[] | string
+		nation: string | TnationList[]
 	};
 	
 	setFilterState: (
 		input: {
 			headline: string;
 			date: string;
-			nation: object[]
+			nation: TnationList[]
 		}) => void;
 }
 

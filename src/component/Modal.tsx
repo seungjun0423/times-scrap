@@ -1,12 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { modalStore, filterStore } from "@/model/store";
-
-type TnationList = {
-		nation: string;
-		isSelected: boolean;
-		en: string;
-}
+import { TnationList } from "@/types/HomeScreenType";
 
 function Modal() {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
