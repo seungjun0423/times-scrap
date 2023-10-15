@@ -10,11 +10,12 @@ function HomeScreen() {
 	// const [modalState, setModalState] = useState<boolean>(false);
 	useEffect(() => {
 		const testFn = async () => {
-			const test = await axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=lzhGmqq7OKnA2Og1BjxCcStOW6qd3Iru");
+			const test = await axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=korea&api-key=lzhGmqq7OKnA2Og1BjxCcStOW6qd3Iru");
 			console.log(test);
 		}
 		testFn();
 	}, [])
+
   return (
 		<HomeScreenBox>
 			<HomeScreens>
