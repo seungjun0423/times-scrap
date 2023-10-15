@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
-import Modal from "@/component/ui/Modal";
+import Modal from "@/component/Modal";
 import { getTodayHeadLine } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
 import { modalStore } from "@/model/store";

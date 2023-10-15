@@ -2,13 +2,25 @@ import { useState } from "react";
 import styled from "styled-components";
 import { modalStore } from "@/model/store";
 
+type TnationList = {
+		nation: string;
+		isSelected: boolean;
+}
+
 function Modal() {
-	const nationList: string[] = [ "대한민국", "중국", "일본", "미국", "북한", "러시아", "프랑스", "영국", "북한"];
+	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 	const modalState = modalStore( state => state.modalState);
 	const setModalState = modalStore( state => state.setModalState);
 	const [headLine, setHeadLine] = useState<string>('');
 	const [date, setDate] = useState<string>('');
-	const [nation, setNation] = useState<string>('');
+	const [nation, setNation] = useState<TnationList[]>([ 
+		{nation:"대한민국", isSelected: false}, {nation:"중국", isSelected: false}, {nation:"일본", isSelected: false}, {nation:"미국", isSelected: false}, {nation:"북한", isSelected: false}, {nation:"러시아", isSelected: false}, {nation:"프랑스", isSelected: false}, {nation:"영국", isSelected: false}, {nation:"북한", isSelected: false}
+	]);
+
+	const nSelectHandler = ( index: number ) => {
+		nation[index].isSelected = !nation[index].isSelected;
+		setNation(nation);
+	}	
 
   return (
 		<>
@@ -18,7 +30,7 @@ function Modal() {
 
 					<Sector key="headLine">
 						<Label>
-							헤드라인
+							{labels[0]}
 						</Label>
 						<InputHeadLine 
 							onChange={e=>{setHeadLine(e.target.value)}}
@@ -27,7 +39,7 @@ function Modal() {
 
 					<Sector key="date">
 						<Label>
-							날짜
+							{labels[1]}
 						</Label>
 						<DatePicker 
 							type="date" 
@@ -40,21 +52,26 @@ function Modal() {
 
 					<Sector key="nation">
 						<Label>
-							국가
+							{labels[2]}
 						</Label>
 						<NationListBox>
-							{ nationList.map((el:string, index: number) => {
+							{ nation.map((el:TnationList, index: number) => {
 									return (
-										<NationBtn key={index}>
-											{el}
+										<NationBtn 
+											key={index}
+											onClick={()=>{ nSelectHandler(index) }}
+											$isSelected={el.isSelected}
+										>
+											{el.nation}
 										</NationBtn>
-								)})
+									)
+								})
 							}
 						</NationListBox>
 					</Sector>
 					<SubmitBtn>
 						<Div>
-							필터 적용하기
+							{labels[3]}
 						</Div>
 					</SubmitBtn>
 				</InputBox>
@@ -144,7 +161,6 @@ const DatePicker = styled.input<{$isSelected?: boolean}>`
 	outline: none;
 
 	&[type='date']::before {
-		/* content: attr(data-placeholder); */
 		content: attr(${props => props.$isSelected? '':"data-placeholder"});
 		position: fixed;
 		font-size: 14px;
@@ -172,19 +188,20 @@ const NationListBox = styled.div`
 	flex-wrap: wrap;
 `;
 
-const NationBtn = styled.div`
+const NationBtn = styled.button<{$isSelected: boolean;}>`
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 24px;
 	letter-spacing: -0.04em;
 	border: 1px solid #F2F2F2;
 	border-radius: 30px;
-	color: #6D6D6D;
+	color: ${ props => props.$isSelected ? "#F2F2F2":"#6D6D6D"};
+	/* background-color: #FFFFFF; */
+	background-color: ${ props => props.$isSelected ? "#82B0F4":"#FFFFFF"};
 	padding-top: 6px;
 	padding-right: 12px;
 	padding-bottom: 4px;
 	padding-left: 12px;
-	color: #6D6D6D;
 	margin-right: 4px;
 	margin-bottom: 4px;
 
