@@ -1,12 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/ui/Modal";
 
 function HomeScreen() {
-	const [modalState, setModalState] = useState<boolean>(false);
-
+	// const [modalState, setModalState] = useState<boolean>(false);
+	useEffect(() => {
+		const testFn = async () => {
+			const test = await axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=lzhGmqq7OKnA2Og1BjxCcStOW6qd3Iru");
+			console.log(test);
+		}
+		testFn();
+	}, [])
   return (
 		<HomeScreenBox>
 			<HomeScreens>
@@ -15,7 +23,7 @@ function HomeScreen() {
 					<Article/>
 				</ArticleList>
 			</HomeScreens>
-			<Modal modalState={modalState}/>
+			<Modal modalState={false}/>
 		</HomeScreenBox>
   )
 }

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "react-datepicker/dist/react-datepicker.css";
 
 function Modal(props : { modalState: boolean }) {
 	const { modalState } = props;
