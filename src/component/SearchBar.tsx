@@ -20,7 +20,15 @@ function SearchBar() {
 	])
 
 	useEffect(() => {
-		console.log(filterState);
+		const headlineData = filterState.headline ? filterState.headline:"전체 헤드라인";
+		const dateData = filterState.date ? filterState.date:"전체 날짜"
+		const nationData = typeof(filterState.nation) === "string" ? filterState.nation: filterState.nation.length > 1 ? filterState.nation[0]["nation"]+` 외 ${filterState.nation.length-1}개`: filterState.nation[0]["nation"];
+		console.log(filterState.nation);
+		setList([
+			{ key: "Headline", svg: search, text: headlineData }, 
+			{ key: "Date", svg: calendar, text: dateData }, 
+			{ key: "Nation", svg: "", text: nationData as string }, 
+		])
 	}, [filterState])
 	
 

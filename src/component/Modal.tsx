@@ -36,7 +36,7 @@ function Modal() {
 		const filterData = {
 			headline: headline,
 			date: date.replaceAll('-','.'),
-			nation: nation.filter(el=> el.isSelected)
+			nation: [...nation.filter(el=> el.isSelected)]
 		};
 		setFilterState(filterData);
 		setModalState();
