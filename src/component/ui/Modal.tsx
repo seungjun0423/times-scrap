@@ -1,35 +1,48 @@
 import styled from "styled-components";
-import calendarModal from "@/assets/svg/calendar-modal.svg";
+// import calendarModal from "@/assets/svg/calendar-modal.svg";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 function Modal(props : { modalState: boolean }) {
 	const { modalState } = props;
+
   return (
 		<>
-		<ModalBox>
-			{modalState}
-			<InputBox>
-				<HeadLineBox>
-					<Label>
-						헤드라인
-					</Label>
-					<InputHeadLine/>
-				</HeadLineBox>
-				<DateBox>
-					<Label>
-						날짜
-					</Label>
-					<InputDateBox>
-						<InputDate/>
-						<CalendarIcon src={calendarModal} />
-					</InputDateBox>
-				</DateBox>
-				<NationBox>
-					<Label>
-						국가
-					</Label>
-				</NationBox>
-			</InputBox>
-    </ModalBox>
+		{modalState ?
+			<ModalBox>
+				<InputBox>
+
+					<Sector>
+						<Label>
+							헤드라인
+						</Label>
+						<InputHeadLine/>
+					</Sector>
+
+					<Sector>
+						<Label>
+							날짜
+						</Label>
+						<InputDateBox>
+							<input className="date_picker" type="date" placeholder="날짜를 선택해주세요"/>
+							{/* <CalendarIcon src={calendarModal} /> */}
+						</InputDateBox>
+					</Sector>
+
+					<Sector>
+						<Label>
+							국가
+						</Label>
+						<NationListBox>
+							<NationBtn>
+								대한민국
+							</NationBtn>
+						</NationListBox>
+					</Sector>
+				</InputBox>
+			</ModalBox>
+		:<></>}
 		</>
   )
 }
@@ -60,13 +73,7 @@ const InputBox = styled.div`
 	padding: 20px;
 `;
 
-const HeadLineBox = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-`;
-
-const DateBox = styled.div`
+const Sector = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -103,30 +110,38 @@ const InputDateBox = styled.div`
 	width: 295px;
 	height: 44px;
 	display:flex;
-	/* padding-top: 10px; */
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 10px;
 	padding-right: 20px;
-	/* padding-bottom: 10px; */
+	padding-bottom: 10px;
 	padding-left: 20px;
 	border-radius: 8px;
 	border: 1px solid #C4C4C4;
 `;
 
-const InputDate = styled.input.attrs({ type: "date",placeholder: "날짜를 선택해주세요." })`
-	width: 100%;
-	border: none;
-	outline: none;
+// const CalendarIcon = styled.img`
+// 	width: 16px;
+// 	height: 16px;
+// `;
 
-	&::placeholder{
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 24px;
-		letter-spacing: -0.04em;
-	}
-`;
-
-const CalendarIcon = styled.img`
-`;
-
-const NationBox = styled.div`
+const NationListBox = styled.div`
 	display: flex;
+	gap: 8px;
+`;
+
+const NationBtn = styled.div`
+	/* width: 100%; */
+	/* height: 100%; */
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 24px;
+	letter-spacing: -0.04em;
+	border: 1px solid #F2F2F2;
+	border-radius: 30px;
+	color: #6D6D6D;
+	padding-top: 6px;
+	padding-right: 12px;
+	padding-bottom: 4px;
+	padding-left: 12px;
 `;
