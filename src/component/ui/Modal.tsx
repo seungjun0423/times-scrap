@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { modalStore } from "@/model/store";
 
@@ -5,6 +6,9 @@ function Modal() {
 	const nationList: string[] = [ "대한민국", "중국", "일본", "미국", "북한", "러시아", "프랑스", "영국", "북한"];
 	const modalState = modalStore( state => state.modalState);
 	const setModalState = modalStore( state => state.setModalState);
+	const [headLine, setHeadLine] = useState<string>('');
+	const [date, setDate] = useState<string>('');
+	const [nation, setNation] = useState<string>('');
 
   return (
 		<>
@@ -16,14 +20,22 @@ function Modal() {
 						<Label>
 							헤드라인
 						</Label>
-						<InputHeadLine/>
+						<InputHeadLine 
+							onChange={e=>{setHeadLine(e.target.value)}}
+						/>
 					</Sector>
 
 					<Sector key="date">
 						<Label>
 							날짜
 						</Label>
-						<DatePicker type="date" data-placeholder="날짜를 선택해주세요"/>
+						<DatePicker 
+							type="date" 
+							data-placeholder="날짜를 선택해주세요"
+							onChange={ e =>{ setDate(e.target.value) }}
+							value={ date }
+							$isSelected={ date ? true:false }
+						/>
 					</Sector>
 
 					<Sector key="nation">
@@ -117,7 +129,7 @@ const InputHeadLine = styled.input.attrs({type: "text", placeholder: "검색하�
 	}
 `;
 
-const DatePicker = styled.input`
+const DatePicker = styled.input<{$isSelected?: boolean}>`
 	width: 100%;
 	height: 44px;
 	display:flex;
@@ -132,8 +144,9 @@ const DatePicker = styled.input`
 	outline: none;
 
 	&[type='date']::before {
-		content: attr(data-placeholder);
-		width: 100%;
+		/* content: attr(data-placeholder); */
+		content: attr(${props => props.$isSelected? '':"data-placeholder"});
+		position: fixed;
 		font-size: 14px;
 		font-weight: 400;
 		line-height: 24px;
@@ -141,14 +154,15 @@ const DatePicker = styled.input`
 		color: #C4C4C4;
 	}
 
+
 	&[type="date"]::-webkit-calendar-picker-indicator {
 		color: rgba(0, 0, 0, 0);
 		opacity: 1;
 		display: block;
 		background: url('src/assets/svg/calendar-modal.svg') no-repeat 98% 50%; 
-		width: 30px;
-		height: 25px;
-		border-width: thin;
+		width: ${props => props.$isSelected? "16px":"100%"};
+		height: 45px;
+		z-index: 99;
 		cursor: pointer;
 	}
 `;

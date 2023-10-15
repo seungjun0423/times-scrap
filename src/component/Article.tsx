@@ -25,7 +25,7 @@ function Article( { article } : { article: Tarticle}) {
 					</Source>
 				</Published>
 				<PubDate>
-					{/* {article.pubDate} */}
+					{article.pubDate}
 				</PubDate>
 			</SourceData>
     </ArticleBox>

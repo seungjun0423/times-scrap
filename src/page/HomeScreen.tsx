@@ -10,7 +10,6 @@ import { modalStore } from "@/model/store";
 // import moment from "moment-timezone";
 
 function HomeScreen() {
-	const modalState = modalStore(state=>state.modalState);
 	// const setModalState = modalStore(state=>state.setModalState);
 	// console.log(modalState);
 	// const { isLoading, isError, data, error } = useQuery({
@@ -18,9 +17,9 @@ function HomeScreen() {
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
 	// const { data } = useQuery({
-  //   queryKey: [`todayHeadline`],
-  //   queryFn: getTodayHeadLine
-  // });
+	// 	queryKey: [`todayHeadline`],
+	// 	queryFn: getTodayHeadLine
+	// });
 	// console.log(data.headline.main);
 	// console.log(data.source);
 	// console.log(data.byline.original);
