@@ -5,6 +5,7 @@ import { modalStore } from "@/model/store";
 type TnationList = {
 		nation: string;
 		isSelected: boolean;
+		en: string;
 }
 
 function Modal() {
@@ -14,7 +15,7 @@ function Modal() {
 	const [headLine, setHeadLine] = useState<string>('');
 	const [date, setDate] = useState<string>('');
 	const [nation, setNation] = useState<TnationList[]>([ 
-		{nation:"대한민국", isSelected: false}, {nation:"중국", isSelected: false}, {nation:"일본", isSelected: false}, {nation:"미국", isSelected: false}, {nation:"북한", isSelected: false}, {nation:"러시아", isSelected: false}, {nation:"프랑스", isSelected: false}, {nation:"영국", isSelected: false}, {nation:"북한", isSelected: false}
+		{nation: "대한민국", isSelected: false, en: "south korea"}, {nation: "중국", isSelected: false, en: "china"}, {nation: "일본", isSelected: false, en: "japan"}, {nation: "미국", isSelected: false, en: "usa"}, {nation: "북한", isSelected: false, en: "north korea"}, {nation: "러시아", isSelected: false, en: "russia"}, {nation: "프랑스", isSelected: false, en: "france"}, {nation: "영국", isSelected: false, en: "england"}, {nation:"북한", isSelected: false, en: "north korea"}
 	]);
 
 	const nSelectHandler = ( index: number ) => {

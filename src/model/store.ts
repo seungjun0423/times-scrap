@@ -6,7 +6,11 @@ type TmodalStore = {
 };
 
 type TfilterStore = {
-	headline: boolean;
+	filter: {
+		headline: string;
+		date: string;
+		nation: string[]
+	};
 	setModalState: () => void;
 }
 
