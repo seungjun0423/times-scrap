@@ -8,7 +8,7 @@ function Article( { article } : { article: Tarticle}) {
 
 			<TitleBox>
 				<Title>
-					{article.headLine}
+					{article.headline}
 				</Title>
 				<IconBox>
 					<Icon src={substract}/>

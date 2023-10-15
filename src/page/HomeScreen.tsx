@@ -18,7 +18,7 @@ function HomeScreen() {
   // });
 	// const { data } = useQuery({
 	// 	queryKey: [`todayHeadline`],
-	// 	queryFn: getTodayHeadLine
+	// 	queryFn: getTodayHeadline
 	// });
 	// console.log(data.headline.main);
 	// console.log(data.source);
@@ -34,7 +34,7 @@ function HomeScreen() {
 					{/* {
 						data?.map( (el: TarticleData , index: number) =>{
 							const article = {
-								headLine: el.headline.main,
+								headline: el.headline.main,
 								newspaper: el.source,
 								reporter: el.byline.original,
 								pubDate: el.pub_date,

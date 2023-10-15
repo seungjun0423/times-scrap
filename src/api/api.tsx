@@ -9,7 +9,7 @@ const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
 // 	return req;
 // };
 
-const getTodayHeadLine = () => {
+const getTodayHeadline = () => {
 	const req = axios.get(
 		`${VITE_API_URL}fq=pub_date:(2023-10-14) AND Section Name Values:('Today's Headlines')&api-key=${VITE_API_KEY}`
 	).then( res => res.data.response.docs);
@@ -17,4 +17,4 @@ const getTodayHeadLine = () => {
 };
 
 // export { getArticle, getTodayHeadLine };
-export { getTodayHeadLine };
+export { getTodayHeadline };

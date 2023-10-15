@@ -6,7 +6,7 @@ import { TsearchBarList } from "@/types/HomeScreenType";
 
 function SearchBar() {
 	const list: TsearchBarList[]  = [ 
-			{ key: "HeadLine", svg: search, text: "전체 헤드라인" }, 
+			{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
 			{ key: "Date", svg: calendar, text: "전체 날짜" }, 
 			{ key: "Nation", svg: "", text: "전체 국가" }, 
 	];

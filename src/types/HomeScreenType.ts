@@ -12,7 +12,7 @@ type TarticleData = {
 }
 
 type Tarticle = {
-	headLine: string;
+	headline: string;
 	newspaper: string;
 	reporter: string;
 	pubDate: string;
