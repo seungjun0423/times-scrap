@@ -19,7 +19,7 @@ function Modal() {
 
 	const nSelectHandler = ( index: number ) => {
 		nation[index].isSelected = !nation[index].isSelected;
-		setNation(nation);
+		setNation([...nation]);
 	}	
 
   return (
@@ -196,7 +196,6 @@ const NationBtn = styled.button<{$isSelected: boolean;}>`
 	border: 1px solid #F2F2F2;
 	border-radius: 30px;
 	color: ${ props => props.$isSelected ? "#F2F2F2":"#6D6D6D"};
-	/* background-color: #FFFFFF; */
 	background-color: ${ props => props.$isSelected ? "#82B0F4":"#FFFFFF"};
 	padding-top: 6px;
 	padding-right: 12px;
