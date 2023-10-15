@@ -1,8 +1,5 @@
 import styled from "styled-components";
-// import calendarModal from "@/assets/svg/calendar-modal.svg";
 import "react-datepicker/dist/react-datepicker.css";
-
-
 
 function Modal(props : { modalState: boolean }) {
 	const { modalState } = props;
@@ -24,10 +21,7 @@ function Modal(props : { modalState: boolean }) {
 						<Label>
 							날짜
 						</Label>
-						<InputDateBox>
-							<input className="date_picker" type="date" placeholder="날짜를 선택해주세요"/>
-							{/* <CalendarIcon src={calendarModal} /> */}
-						</InputDateBox>
+						<DatePicker type="date" data-placeholder="날짜를 선택해주세요"/>
 					</Sector>
 
 					<Sector>
@@ -103,10 +97,11 @@ const InputHeadLine = styled.input.attrs({type: "text", placeholder: "검색하�
 		font-weight: 400;
 		line-height: 24px;
 		letter-spacing: -0.04em;
+		color: #C4C4C4;
 	}
 `;
 
-const InputDateBox = styled.div`
+const DatePicker = styled.input`
 	width: 295px;
 	height: 44px;
 	display:flex;
@@ -118,12 +113,29 @@ const InputDateBox = styled.div`
 	padding-left: 20px;
 	border-radius: 8px;
 	border: 1px solid #C4C4C4;
-`;
+	outline: none;
 
-// const CalendarIcon = styled.img`
-// 	width: 16px;
-// 	height: 16px;
-// `;
+
+	&[type='date']::before {
+		content: attr(data-placeholder);
+		width: 100%;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 24px;
+		letter-spacing: -0.04em;
+		color: #C4C4C4;
+	}
+
+	&[type="date"]::-webkit-calendar-picker-indicator {
+		color: rgba(0, 0, 0, 0);
+		opacity: 1;
+		display: block;
+		background: url('src/assets/svg/calendar-modal.svg') no-repeat 98% 50%; 
+		width: 30px;
+		height: 25px;
+		border-width: thin;
+	}
+`;
 
 const NationListBox = styled.div`
 	display: flex;
