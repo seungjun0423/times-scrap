@@ -13,10 +13,16 @@ function HomeScreen() {
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
 
-	const { isLoading, isError, data, error } = useQuery({
-    queryKey: ['todayHeadline'],
+	const { data } = useQuery({
+    queryKey: [`todayHeadline`],
     queryFn: getTodayHeadLine,
   });
+	// console.log(data.headline.main);
+	// console.log(data.source);
+	// console.log(data.byline.original);
+	// console.log(data.pub_date);
+	// console.log(data);
+	console.log(new Date());
 	
 
   return (
@@ -24,7 +30,17 @@ function HomeScreen() {
 			<HomeScreens>
 				<SearchBar/>
 				<ArticleList>
-					<Article/>
+					{
+						data?.map( (el, index: number) =>{
+							const article = {
+								headLine: el.headline.main,
+								newspaper: el.source,
+								reporter: el.byline.original,
+								pubDate: el.pub_date,
+							}
+							return <Article key={index}article={article}/>
+						})
+					}
 				</ArticleList>
 			</HomeScreens>
 			<Modal modalState={false}/>
@@ -51,6 +67,11 @@ const HomeScreens = styled.main`
 	max-height: 768px;
 	background-color: #F0F1F4;
 	border-radius: 30px;
+	overflow-x: scroll;
+
+	&::-webkit-scrollbar {
+		display: none;
+	};
 `;
 
 const ArticleList = styled.div`

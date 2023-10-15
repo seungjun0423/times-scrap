@@ -27,6 +27,8 @@ export default SearchBar;
 const SearchBox = styled.div`
 	width: 100%;
 	height: 60px;
+	position: sticky;
+	top: 0;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #C4C4C4;
 `;

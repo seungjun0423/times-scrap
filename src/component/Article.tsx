@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import substract from "@/assets/svg/subtract.svg";
+import { Tarticle } from "@/types/HomeScreenType";
 
-function Article() {
-
+function Article( { article } : { article: Tarticle}) {
   return (
     <ArticleBox>
 
 			<TitleBox>
 				<Title>
-					국방부 “北, 화성-17 실패 만회하려 영상 짜깁기… 성공 조작”
+					{article.headLine}
 				</Title>
 				<IconBox>
 					<Icon src={substract}/>
@@ -18,14 +18,14 @@ function Article() {
 			<SourceData>
 				<Published>
 					<Source>
-						조선일보
+						{article.newspaper}
 					</Source>
 					<Source>
-						김정환 기자
+						{article.reporter}
 					</Source>
 				</Published>
 				<PubDate>
-					2021.3.15. (목)
+					{/* {article.pubDate} */}
 				</PubDate>
 			</SourceData>
     </ArticleBox>
@@ -55,7 +55,7 @@ const TitleBox = styled.div`
 	justify-content: space-between;
 `;
 
-const Title = styled.div`
+const Title = styled.span`
 	width: 260px;
 	height: 56px;
 	color: #000000;
@@ -63,6 +63,7 @@ const Title = styled.div`
 	font-weight: 600;
 	line-height: 28px;
 	letter-spacing: -0.05em;
+  overflow: hidden;  
 `;
 
 const IconBox = styled.div`
