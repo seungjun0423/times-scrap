@@ -1,15 +1,28 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Filter from "./ui/Filter";
 import search from "@/assets/svg/search.svg";
 import calendar from "@/assets/svg/calendar.svg";
 import { TsearchBarList } from "@/types/HomeScreenType";
+import { filterStore } from "@/model/store";
 
 function SearchBar() {
-	const list: TsearchBarList[]  = [ 
-			{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
-			{ key: "Date", svg: calendar, text: "전체 날짜" }, 
-			{ key: "Nation", svg: "", text: "전체 국가" }, 
-	];
+	// const list: TsearchBarList[]  = [ 
+	// 		{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
+	// 		{ key: "Date", svg: calendar, text: "전체 날짜" }, 
+	// 		{ key: "Nation", svg: "", text: "전체 국가" }, 
+	// ];
+	const filterState = filterStore(state=>state.filterState);
+	const [list, setList] = useState<TsearchBarList[]>([ 
+		{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
+		{ key: "Date", svg: calendar, text: "전체 날짜" }, 
+		{ key: "Nation", svg: "", text: "전체 국가" }, 
+	])
+
+	useEffect(() => {
+		console.log(filterState);
+	}, [filterState])
+	
 
   return (
     <SearchBox>

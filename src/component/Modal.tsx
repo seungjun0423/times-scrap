@@ -11,7 +11,6 @@ type TnationList = {
 function Modal() {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 	const modalState = modalStore( state => state.modalState);
-	const filterState = filterStore( state => state.filterState);
 	const setFilterState = filterStore( state => state.setFilterState);
 	const setModalState = modalStore( state => state.setModalState);
 	const [headline, setHeadline] = useState<string>('');
@@ -36,10 +35,11 @@ function Modal() {
 	const filterHandler = () => {
 		const filterData = {
 			headline: headline,
-			date: date,
+			date: date.replaceAll('-','.'),
 			nation: nation.filter(el=> el.isSelected)
 		};
 		setFilterState(filterData);
+		setModalState();
 	};
 
   return (
