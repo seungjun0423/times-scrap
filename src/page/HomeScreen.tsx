@@ -13,11 +13,6 @@ import Fetching from "@/component/ui/Fetching";
 import { filterStore } from "@/model/store";
 
 function HomeScreen() {
-	const filterState = filterStore( state => state.filterState);
-	console.log(filterState);
-	const loadingRef = useRef<HTMLDivElement>(null);
-	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
-
 	const {
     data,
 		isLoading,
@@ -31,7 +26,14 @@ function HomeScreen() {
       staleTime: 1000 * 60 * 5, 
       cacheTime: 1000 * 60 * 5
 		});
-		const articlePages = data?.pages;
+	const articlePages = data?.pages;
+	const filterState = filterStore( state => state.filterState);
+	// console.log(filterState.headline !== "전체 헤드라인");
+	// console.log(filterState.date !== "전체 날짜");
+	console.log(filterState.nation);
+	// console.log(filterState.headline !== "전체 헤드라인" || filterState.date !== "전체 날짜" || filterState.nation !== "전체 국가");
+	const loadingRef = useRef<HTMLDivElement>(null);
+	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
 
 		useEffect(() => {
 			if (loadingRef.current && hasNextPage) {

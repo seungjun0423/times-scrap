@@ -42,7 +42,7 @@ function Modal() {
 		const filterData = {
 			headline: headline,
 			date: date.replaceAll('-','.'),
-			nation: [...nation.filter(el=> el.isSelected)],
+			nation: nation.filter(el=> el.isSelected).length !==0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
 		};
 		setFilterState(filterData);
 		setModalState();

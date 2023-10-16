@@ -1,6 +1,5 @@
 import { TarticleData } from "@/types/HomeScreenType";
 import axios from "axios";
-
 const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
 
 // const getFilterd = ( date, headLine, nation ): Promise<> => {
