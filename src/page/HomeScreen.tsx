@@ -6,6 +6,7 @@ import Modal from "@/component/Modal";
 import { getTodayHeadline } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
 import { serviceFormat, apiFormat } from "@/hooks/fomatter";
+import Nav from "@/component/Nav";
 
 function HomeScreen() {
 	// const { data } = useQuery({
@@ -34,6 +35,7 @@ function HomeScreen() {
 							return <Article key={index}article={article}/>
 					})}
 				</ArticleList>
+				<Nav/>
 			</HomeScreens>
 			<Modal/>
 		</HomeScreenBox>
