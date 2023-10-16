@@ -56,14 +56,17 @@ const TitleBox = styled.div`
 `;
 
 const Title = styled.span`
-	width: 260px;
+	width: 100%;
 	height: 56px;
 	color: #000000;
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 28px;
 	letter-spacing: -0.05em;
-  overflow: hidden;  
+	padding-right: 6px;
+	white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 `;
 
 const IconBox = styled.div`
