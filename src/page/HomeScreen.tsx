@@ -3,37 +3,71 @@ import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/Modal";
-import { getTodayHeadline } from "@/api/api"; 
+import { getTodayHeadline, getTodayHeadlineByPage } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
-import { serviceFormat, apiFormat } from "@/hooks/fomatter";
+import { serviceFormat, apiFormat, infiniteParams } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
+import { useEffect, useRef } from "react";
 
 function HomeScreen() {
+	// console.log(new Date().getDate());
 	// const { data } = useQuery({
   //   queryKey: ['article'],
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
-	const { data } = useQuery({
-		queryKey: [`todayHeadline`, apiFormat(new Date())],
-		queryFn: ()=> getTodayHeadline( apiFormat(new Date()) ),
-		staleTime: 1000 * 60 * 5, 
-		cacheTime: 1000 * 60 * 5,
-	});
+	// const { data } = useQuery({
+	// 	queryKey: [`todayHeadline`, apiFormat(new Date())],
+	// 	queryFn: ()=> getTodayHeadline( apiFormat(new Date()) ),
+	// 	staleTime: 1000 * 60 * 5, 
+	// 	cacheTime: 1000 * 60 * 5,
+	// });
+	const fetchTodayHeadline = ({ pageParam = apiFormat(new Date()) }) => getTodayHeadline(pageParam);
+	const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError
+  } = useInfiniteQuery({
+			queryKey:['todayHeadline'], 
+			queryFn: (pageParam)=>fetchTodayHeadline(pageParam), 
+      getNextPageParam: (lastPage) => lastPage[0] ? infiniteParams( apiFormat(lastPage[0].pub_date) ):false, 
+      staleTime: 1000 * 60 * 5, 
+      cacheTime: 1000 * 60 * 5
+		});
+
+		const articlePages = data?.pages;
+
+		const loadingRef = useRef();
+		useEffect(() => {
+			if (loadingRef.current && hasNextPage) {
+				const observer = new IntersectionObserver(
+					entries => entries[0].isIntersecting && fetchNextPage(),
+					{ threshold: 0.5 }
+				);
+				observer.observe(loadingRef.current);
+			}
+		}, [hasNextPage]);
 
   return (
 		<HomeScreenBox>
 			<HomeScreens>
 				<SearchBar/>
 				<ArticleList>
-					{ data?.map( (el: TarticleData , index: number) =>{
-							const article = {
-								headline: el.headline.main,
-								newspaper: el.source,
-								reporter: el.byline.original,
-								pubDate: serviceFormat(el.pub_date),
-							}
-							return <Article key={index}article={article}/>
-					})}
+					{ articlePages?.map( page => 
+							page.map((el: TarticleData, index: number) => {
+								const article = {
+									headline: el.headline.main,
+									newspaper: el.source,
+									reporter: el.byline.original,
+									pubDate: serviceFormat(el.pub_date),
+									url: el.web_url,
+								};
+								return <Article key={index} article={article}/>;
+					}))}
+					<div ref={loadingRef} />
 				</ArticleList>
 				<Nav/>
 			</HomeScreens>

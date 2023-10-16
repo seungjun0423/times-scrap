@@ -3,11 +3,15 @@ import substract from "@/assets/svg/subtract.svg";
 import { Tarticle } from "@/types/HomeScreenType";
 
 function Article( { article } : { article: Tarticle}) {
+
+	const goArticle = () => {
+		window.location.href = article.url;
+	}
   return (
     <ArticleBox>
 
 			<TitleBox>
-				<Title>
+				<Title onClick={goArticle}>
 					{article.headline}
 				</Title>
 				<IconBox>
@@ -36,7 +40,6 @@ export default Article;
 
 const ArticleBox = styled.div`
 	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	padding-top: 10px;
@@ -50,14 +53,14 @@ const ArticleBox = styled.div`
 
 const TitleBox = styled.div`
 	width: 100%;
-	height: 100%;
+	height:56px;
 	display: flex;
 	justify-content: space-between;
 `;
 
 const Title = styled.span`
-	width: 100%;
-	height: 56px;
+	width: fit-content;
+	height: fit-content;
 	color: #000000;
 	font-size: 18px;
 	font-weight: 600;
@@ -67,6 +70,7 @@ const Title = styled.span`
 	white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; 
+	cursor: pointer;
 `;
 
 const IconBox = styled.div`
@@ -74,6 +78,7 @@ const IconBox = styled.div`
 	height: 24px;
 	padding: 4px;
 	gap: 10px;
+	cursor: pointer;
 `;
 
 const Icon = styled.img`

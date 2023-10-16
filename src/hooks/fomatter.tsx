@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
 
 /** 서비스에서 보여지는 날짜 포맷터 (YYYY.MM.DD) */
-const serviceFormat = ( input: string) => {
+const serviceFormat = ( input: string ) => {
 	return moment(input).tz("Asia/Seoul").format("YYYY.MM.DD");
 };
 
@@ -10,6 +10,10 @@ const apiFormat = ( input: string | Date) => {
 	return moment(input).tz("Asia/Seoul").format("YYYY-MM-DD");
 };
 
-export { serviceFormat, apiFormat, };
+const infiniteParams = ( input: string | Date ) => {
+	return moment(input).subtract(1, 'd').tz("Asia/Seoul").format("YYYY-MM-DD");
+}
+
+export { serviceFormat, apiFormat, infiniteParams };
 
 
