@@ -5,20 +5,16 @@ import Article from "@/component/Article";
 import Modal from "@/component/Modal";
 import { getTodayHeadline } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
-import moment from "moment-timezone";
+import { serviceFormat, apiFormat } from "@/hooks/fomatter";
 
 function HomeScreen() {
-	const dateFormat = ( input: string) => {
-		return moment(input).tz("Asia/Seoul").format("YYYY.MM.DD");
-	};
-	// const { isLoading, isError, data, error } = useQuery({
+	// const { data } = useQuery({
   //   queryKey: ['article'],
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
-
 	const { data } = useQuery({
-		queryKey: [`todayHeadline`],
-		queryFn: getTodayHeadline,
+		queryKey: [`todayHeadline`,apiFormat(new Date())],
+		queryFn: ()=> getTodayHeadline(apiFormat(new Date())),
 		staleTime: 1000 * 60 * 5,
 		cacheTime: 1000 * 60 * 5,
 	});
@@ -33,7 +29,7 @@ function HomeScreen() {
 								headline: el.headline.main,
 								newspaper: el.source,
 								reporter: el.byline.original,
-								pubDate: dateFormat(el.pub_date),
+								pubDate: serviceFormat(el.pub_date),
 							}
 							return <Article key={index}article={article}/>
 					})}

@@ -10,9 +10,9 @@ const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
 // };
 
 /**Parameter: (date: YYYY-MM-DD), 단일 파라미터 date 값을 인자로 받으며 YYYY-MM-DD 포맷의 형태로 받는다.   */
-const getTodayHeadline = () => {
+const getTodayHeadline = ( todayDate: string ) => {
 	const req = axios.get(
-		`${VITE_API_URL}fq=pub_date:(2023-10-14) AND Section Name Values:('Today's Headlines')&api-key=${VITE_API_KEY}`
+		`${VITE_API_URL}fq=pub_date:(${todayDate}) AND Section Name Values:('Today's Headlines')&api-key=${VITE_API_KEY}`
 	).then( res => res.data.response.docs);
 	return req;
 };
