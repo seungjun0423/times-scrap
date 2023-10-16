@@ -40,8 +40,8 @@ function Modal() {
 	
 	const filterHandler = () => {
 		const filterData = {
-			headline: headline,
-			date: date.replaceAll('-','.'),
+			headline: headline ? headline: '전체 헤드라인',
+			date: date.replaceAll('-','.') ? date.replaceAll('-','.'): '전체 날짜',
 			nation: nation.filter(el=> el.isSelected).length !==0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
 		};
 		setFilterState(filterData);
