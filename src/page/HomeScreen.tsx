@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
@@ -7,25 +8,15 @@ import { getTodayHeadline } from "@/api/api";
 import { TarticleData } from "@/types/HomeScreenType";
 import { serviceFormat, apiFormat, infiniteParams } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
-import { useEffect, useRef } from "react";
 
 function HomeScreen() {
-	// console.log(new Date().getDate());
-	// const { data } = useQuery({
-  //   queryKey: ['article'],
-  //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
-  // });
-	// const { data } = useQuery({
-	// 	queryKey: [`todayHeadline`, apiFormat(new Date())],
-	// 	queryFn: ()=> getTodayHeadline( apiFormat(new Date()) ),
-	// 	staleTime: 1000 * 60 * 5, 
-	// 	cacheTime: 1000 * 60 * 5,
-	// });
-	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
 	const loadingRef = useRef<HTMLDivElement>(null);
+	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
 
 	const {
     data,
+		isLoading,
+		isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
@@ -35,7 +26,6 @@ function HomeScreen() {
       staleTime: 1000 * 60 * 5, 
       cacheTime: 1000 * 60 * 5
 		});
-
 		const articlePages = data?.pages;
 
 		useEffect(() => {
@@ -55,6 +45,7 @@ function HomeScreen() {
 			<HomeScreens>
 				<SearchBar/>
 				<ArticleList>
+					{isLoading ? "로딩중입니다":<></>}
 					{ articlePages?.map( page => 
 							page.map((el: TarticleData, index: number) => {
 								const article = {
