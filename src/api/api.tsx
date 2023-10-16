@@ -13,7 +13,6 @@ const getTodayHeadline = () => {
 	const req = axios.get(
 		`${VITE_API_URL}fq=pub_date:(2023-10-14) AND Section Name Values:('Today's Headlines')&api-key=${VITE_API_KEY}`
 	).then( res => res.data.response.docs);
-	console.log(new Date());
 	return req;
 };
 

@@ -7,11 +7,6 @@ import { TsearchBarList } from "@/types/HomeScreenType";
 import { filterStore } from "@/model/store";
 
 function SearchBar() {
-	// const list: TsearchBarList[]  = [ 
-	// 		{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
-	// 		{ key: "Date", svg: calendar, text: "전체 날짜" }, 
-	// 		{ key: "Nation", svg: "", text: "전체 국가" }, 
-	// ];
 	const filterState = filterStore(state=>state.filterState);
 	const [list, setList] = useState<TsearchBarList[]>([ 
 		{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
@@ -22,7 +17,11 @@ function SearchBar() {
 	useLayoutEffect(() => {
 		const headlineData = filterState.headline ? filterState.headline:"전체 헤드라인";
 		const dateData = filterState.date ? filterState.date:"전체 날짜";
-		const nationData = typeof(filterState.nation) === "string" ? filterState.nation: filterState.nation.length > 1 ? filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: filterState.nation[0].nation;
+		const nationData = typeof(filterState.nation) === "string" ? 
+			filterState.nation : 
+			filterState.nation.length > 1 ? 
+				filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: 
+				filterState.nation[0].nation;
 		setList([
 			{ key: "Headline", svg: search, text: headlineData }, 
 			{ key: "Date", svg: calendar, text: dateData }, 

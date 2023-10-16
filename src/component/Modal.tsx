@@ -27,8 +27,8 @@ function Modal() {
 		setDate('');
 		setNation([
 			...nation.map( el => { 
-				el.isSelected=false 
-			return el;
+				el.isSelected = false; 
+				return el;
 		})]);
 		setModalState();
 	}
@@ -58,7 +58,8 @@ function Modal() {
 						<Label>
 							{labels[0]}
 						</Label>
-						<InputHeadline 
+						<InputHeadline
+							value={headline}
 							onChange={e=>{setHeadline(e.target.value)}}
 						/>
 					</Sector>
@@ -111,7 +112,7 @@ export default Modal;
 
 const ModalBox = styled.div`
 	width: 100%;
-	max-width: 375px;
+	max-width: 560px;
 	height: 100%;
 	max-height: 768px;
 	border-radius: 30px;
@@ -201,7 +202,7 @@ const DatePicker = styled.input<{$isSelected?: boolean}>`
 		color: rgba(0, 0, 0, 0);
 		opacity: 1;
 		display: block;
-		background: url('src/assets/svg/calendar-modal.svg') no-repeat 98% 50%; 
+		background: url('src/assets/svg/calendar-modal.svg') no-repeat 100% 50%; 
 		width: ${props => props.$isSelected? "16px":"100%"};
 		height: 45px;
 		z-index: 99;
