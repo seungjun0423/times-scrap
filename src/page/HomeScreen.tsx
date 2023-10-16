@@ -4,44 +4,49 @@ import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/Modal";
-import { getTodayHeadLine } from "@/api/api"; 
+import { getTodayHeadline } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
 import { modalStore } from "@/model/store";
-// import moment from "moment-timezone";
+import moment from "moment-timezone";
 
 function HomeScreen() {
 	// const setModalState = modalStore(state=>state.setModalState);
+	const dateFormat = ( input: string) => {
+		return moment(input).tz("Asia/Seoul").format("YYYY.MM.DD");
+	};
 	// console.log(modalState);
 	// const { isLoading, isError, data, error } = useQuery({
   //   queryKey: ['article'],
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
-	// const { data } = useQuery({
-	// 	queryKey: [`todayHeadline`],
-	// 	queryFn: getTodayHeadline
-	// });
-	// console.log(data.headline.main);
-	// console.log(data.source);
-	// console.log(data.byline.original);
-	// console.log(data);
-	// console.log(new Date());
+
+	const { data } = useQuery({
+		queryKey: [`todayHeadline`],
+		queryFn: getTodayHeadline,
+		staleTime: 5 * 60 * 1000,
+		cacheTime: 5 * 60 * 1000,
+	});
+	// console.log(el.headline.main);
+	// console.log(el.source);
+	// console.log(el.byline.original);
+
 
   return (
 		<HomeScreenBox>
 			<HomeScreens>
 				<SearchBar/>
 				<ArticleList>
-					{/* {
+					{
 						data?.map( (el: TarticleData , index: number) =>{
 							const article = {
 								headline: el.headline.main,
 								newspaper: el.source,
 								reporter: el.byline.original,
-								pubDate: el.pub_date,
+								pubDate: dateFormat(el.pub_date),
 							}
 							return <Article key={index}article={article}/>
 						})
-					} */}
+					}
 				</ArticleList>
 			</HomeScreens>
 			<Modal/>
