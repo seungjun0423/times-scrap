@@ -42,7 +42,7 @@ function Modal() {
 		const filterData = {
 			headline: headline,
 			date: date.replaceAll('-','.'),
-			nation: [...nation.filter(el=> el.isSelected)]
+			nation: [...nation.filter(el=> el.isSelected)],
 		};
 		setFilterState(filterData);
 		setModalState();
@@ -205,7 +205,7 @@ const DatePicker = styled.input<{$isSelected?: boolean}>`
 		background: url('src/assets/svg/calendar-modal.svg') no-repeat 100% 50%; 
 		width: ${props => props.$isSelected? "16px":"100%"};
 		height: 45px;
-		z-index: 99;
+		z-index: 100;
 		cursor: pointer;
 	}
 `;
