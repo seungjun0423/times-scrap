@@ -8,8 +8,13 @@ import { getTodayHeadline } from "@/api/api";
 import { TarticleData } from "@/types/HomeScreenType";
 import { serviceFormat, apiFormat, infiniteParams } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
+import Loading from "@/component/ui/Loading";
+import Fetching from "@/component/ui/Fetching";
+import { filterStore } from "@/model/store";
 
 function HomeScreen() {
+	const filterState = filterStore( state => state.filterState);
+	console.log(filterState);
 	const loadingRef = useRef<HTMLDivElement>(null);
 	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
 
@@ -44,8 +49,8 @@ function HomeScreen() {
 		<HomeScreenBox>
 			<HomeScreens>
 				<SearchBar/>
+				{isLoading ? <Loading/>:<></>}
 				<ArticleList>
-					{isLoading ? "로딩중입니다":<></>}
 					{ articlePages?.map( page => 
 							page.map((el: TarticleData, index: number) => {
 								const article = {
@@ -57,6 +62,8 @@ function HomeScreen() {
 								};
 								return <Article key={index} article={article}/>;
 					}))}
+					{isFetchingNextPage? <Fetching/>:<></>}
+
 					<div ref={loadingRef} />
 				</ArticleList>
 				<Nav/>
