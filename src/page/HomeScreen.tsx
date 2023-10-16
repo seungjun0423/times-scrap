@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/Modal";
@@ -13,9 +13,9 @@ function HomeScreen() {
   //   queryFn: ()=>getArticle("2023-10-09","biden","china"),
   // });
 	const { data } = useQuery({
-		queryKey: [`todayHeadline`,apiFormat(new Date())],
-		queryFn: ()=> getTodayHeadline(apiFormat(new Date())),
-		staleTime: 1000 * 60 * 5,
+		queryKey: [`todayHeadline`, apiFormat(new Date())],
+		queryFn: ()=> getTodayHeadline( apiFormat(new Date()) ),
+		staleTime: 1000 * 60 * 5, 
 		cacheTime: 1000 * 60 * 5,
 	});
 
