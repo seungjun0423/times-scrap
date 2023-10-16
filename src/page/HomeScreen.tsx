@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/Modal";
-import { getTodayHeadline, getTodayHeadlineByPage } from "@/api/api"; 
+import { getTodayHeadline } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
 import { serviceFormat, apiFormat, infiniteParams } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
@@ -21,18 +21,16 @@ function HomeScreen() {
 	// 	staleTime: 1000 * 60 * 5, 
 	// 	cacheTime: 1000 * 60 * 5,
 	// });
-	const fetchTodayHeadline = ({ pageParam = apiFormat(new Date()) }) => getTodayHeadline(pageParam);
+	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
+	const loadingRef = useRef<HTMLDivElement>(null);
+
 	const {
     data,
-    error,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage,
-    isLoading,
-    isError
   } = useInfiniteQuery({
 			queryKey:['todayHeadline'], 
-			queryFn: (pageParam)=>fetchTodayHeadline(pageParam), 
+			queryFn: (pageParam)=>fetchFn(pageParam), 
       getNextPageParam: (lastPage) => lastPage[0] ? infiniteParams( apiFormat(lastPage[0].pub_date) ):false, 
       staleTime: 1000 * 60 * 5, 
       cacheTime: 1000 * 60 * 5
@@ -40,14 +38,15 @@ function HomeScreen() {
 
 		const articlePages = data?.pages;
 
-		const loadingRef = useRef();
 		useEffect(() => {
 			if (loadingRef.current && hasNextPage) {
 				const observer = new IntersectionObserver(
 					entries => entries[0].isIntersecting && fetchNextPage(),
-					{ threshold: 0.5 }
+					{ threshold: 1 }
 				);
 				observer.observe(loadingRef.current);
+
+				return () => observer.disconnect();
 			}
 		}, [hasNextPage]);
 

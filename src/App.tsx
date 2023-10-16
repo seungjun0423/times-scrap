@@ -1,8 +1,7 @@
 import GlobalStyle from "@style/GlobalStyle";
 import HomeScreen from "@page/HomeScreen";
 import { QueryClient, QueryClientProvider, } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'; // 📍 추가
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'; 
 
 const queryClient = new QueryClient();
 
