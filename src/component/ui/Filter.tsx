@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { TsearchBarList } from "@/types/HomeScreenType";
-import { modalStore, filterStore } from "@/model/store";
+import { modalStore } from "@/model/store";
 
 function Filter( props: Omit<TsearchBarList, "key">) {
 	const { svg, text, input } = props;
 	const setModalState = modalStore( state => state.setModalState);
-	const filterState = filterStore( state => state.filterState);
+
   return (
-    <FilterBox onClick={setModalState}>
+    <FilterBox onClick={setModalState} $input={input}>
 			{svg ? <Icon src={svg}/>: <></>}
-			<Text>
+			<Text $input={input}>
 				{text}
 			</Text>
     </FilterBox>
@@ -18,8 +18,9 @@ function Filter( props: Omit<TsearchBarList, "key">) {
 
 export default Filter;
 
-const FilterBox = styled.div`
-	width: auto;
+const FilterBox = styled.div<{$input: boolean}>`
+	width: fit-content;
+	max-width: 120px;
 	height: auto;
 	display: flex;
 	align-items: center;
@@ -27,8 +28,7 @@ const FilterBox = styled.div`
 	padding-right: 12px;
 	padding-bottom: 4px;
 	padding-left: 12px;
-	border: 1px solid #C4C4C4;
-	/* border: 1px solid #82B0F4; */
+	border: 1px solid ${ props => props.$input ? "#82B0F4" : "#C4C4C4"};
 	border-radius: 30px;
 	gap: 4px;
 	cursor: pointer;
@@ -39,13 +39,17 @@ const Icon = styled.img`
 	height: 16px;
 `;
 
-const Text = styled.span`
+const Text = styled.span<{$input: boolean}>`
 	width: 100%;
 	height: 24px;
-	color: #6D6D6D;
+	color: ${ props => props.$input ? "#3478F6":"#6D6D6D"};
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: -0.04em;
 	display: flex;
 	align-items: center;
+	justify-content:left;
+	white-space: nowrap;
+	overflow: hidden; 
+  text-overflow: ellipsis; 
 `;

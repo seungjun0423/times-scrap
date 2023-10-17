@@ -23,7 +23,7 @@ function Modal() {
 	]);
 
 	const headlineHandler = ( input: string) => {
-		const onlyEn = /^[A-Za-z\s]*$/;    
+		const onlyEn = new RegExp(/^[A-Za-z0-9\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);    
 
 		if(!onlyEn.test(input)){
 			alert("현재는 영문 검색만 가능합니다.")

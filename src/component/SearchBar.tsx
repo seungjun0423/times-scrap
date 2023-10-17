@@ -32,11 +32,15 @@ function SearchBar() {
 
 		const searchIcon = headlineState === '전체 헤드라인' ? search : search_blue;
 		const calendarIcon = dateState === '전체 날짜' ? calendar : calendaer_blue;  		
+
+		const headlinInput = headlineState === '전체 헤드라인' ? false : true;
+		const dateInput = dateState === '전체 날짜' ? false : true;  		
+		const nationInput = nationState === '전체 국가' ? false : true;
 						
 		setList([
-			{ key: "Headline", svg: searchIcon, text: headlineState }, 
-			{ key: "Date", svg: calendarIcon, text: dateState }, 
-			{ key: "Nation", svg: "", text: nationState }, 
+			{ key: "Headline", svg: searchIcon, text: headlineState, input: headlinInput }, 
+			{ key: "Date", svg: calendarIcon, text: dateState, input: dateInput }, 
+			{ key: "Nation", svg: "", text: nationState, input: nationInput }, 
 		])
 	}, [filterState])
 	
@@ -45,7 +49,7 @@ function SearchBar() {
     <SearchBox>
 			<UiBox>
 				{list.map(el=>{
-					return <Filter key={el.key} svg={el.svg} text={el.text} />
+					return <Filter key={el.key} svg={el.svg} text={el.text} input={el.input} />
 				})}
 			</UiBox>
     </SearchBox>
