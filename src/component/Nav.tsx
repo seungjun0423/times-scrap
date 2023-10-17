@@ -4,7 +4,7 @@ import home from "@/assets/svg/home-white.svg";
 import scrap from "@/assets/svg/scrap-gray.svg";
 import { TnavBtnData } from "@/types/type";
 
-function Nav({ pageHandler }: { pageHandler: () => void}) {
+function Nav({ pageHandler }: { pageHandler: (text: string) => void}) {
 	const navBtnData: TnavBtnData[] = [
 		{key: "home", svg: home, text: "홈"},
 		{key: "scrap",svg: scrap, text: "스크랩"}

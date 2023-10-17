@@ -5,7 +5,7 @@ import { scrapStore } from "@/model/store";
 import { Tarticle } from "@/types/type";
 import Union from "@/assets/svg/Union.svg"
 
-function ScrapScreen(){
+function ScrapScreen({ pageHandler }:{pageHandler: (text: string) => void}){
 	const scrapList = scrapStore(state=>state.scrapList);
 
 	return (
@@ -27,7 +27,7 @@ function ScrapScreen(){
 								저장된 스크랩이 없습니다.
 							</Text>
 						</IconBox>
-						<Btn>
+						<Btn onClick={()=>{pageHandler("홈")}}>
 							스크랩 하러가기
 						</Btn>
 					</Wrapper>

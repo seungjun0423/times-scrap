@@ -39,7 +39,7 @@ function Modal({ page }: { page: string }) {
 			{nation: "프랑스", isSelected: false, en: "france"}, 
 			{nation: "영국", isSelected: false, en: "england"}, 
 			{nation:"북한", isSelected: false, en: "north korea"}
-		])
+		]);
 	}, [page])
 	
 

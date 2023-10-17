@@ -10,11 +10,11 @@ function App() {
 	const [page, setPage] = useState<string>("home");
 	const setFilterState = filterStore( state => state.setFilterState);
 
-	const pageHandler = () => {
-		if(page === "home"){
-			setPage("scrap");
-		} else if( page === "scrap"){
+	const pageHandler = (text: string) => {
+		if(text === "홈"){
 			setPage("home");
+		} else if( text === "스크랩"){
+			setPage("scrap");
 		}
 		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
 	}
@@ -25,7 +25,7 @@ function App() {
 				{
 					page === "home" ?
 					<HomeScreen/> :
-					<ScrapScreen/>
+					<ScrapScreen pageHandler={pageHandler}/>
 				}
 				<Nav pageHandler={pageHandler}/>
 			</Section>
