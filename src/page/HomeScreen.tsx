@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
-import Article from "@/component/Article";
+import Article from "@/component/ui/Article";
 import { getData } from "@/api/api"; 
-import { Tarticle, TarticleData } from "@/types/HomeScreenType";
-import { serviceFormat } from "@/hooks/fomatter";
+import { Tarticle, TarticleData } from "@/types/type";
+import { serviceFormat } from "@/lib/fomatter";
 import Loading from "@/component/Loading";
 import Fetching from "@/component/Fetching";
 

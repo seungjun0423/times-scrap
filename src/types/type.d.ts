@@ -28,7 +28,13 @@ type TnationList = {
 	nation: string;
 	isSelected: boolean;
 	en: string;
-}
+};
+
+type TnavBtnData = {
+	key: string;
+	svg: string;
+	text: string;
+}; 
 
 
-export type { TsearchBarList, TarticleData, Tarticle, TnationList };
+export type { TsearchBarList, TarticleData, Tarticle, TnationList, TnavBtnData };

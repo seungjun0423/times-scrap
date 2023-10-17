@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Tarticle, TnationList } from '@/types/HomeScreenType';
+import { Tarticle, TnationList } from '@/types/type';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 type TmodalStore = {

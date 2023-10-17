@@ -1,24 +1,21 @@
 import styled from "styled-components";
+import NavBtn from "./ui/NavBtn";
 import home from "@/assets/svg/home-white.svg";
 import scrap from "@/assets/svg/scrap-gray.svg";
+import { TnavBtnData } from "@/types/type";
 
 function Nav() {
-
+	const navBtnData: TnavBtnData[] = [
+		{key: "home", svg: home, text: "홈"},
+		{key: "scrap",svg: scrap, text: "스크랩"}
+	];
   return (
 		<NavBox>
 			<IconBox>
-				<Btn key="home">
-					<Icon src={home}/>
-					<Text>
-						홈
-					</Text>
-				</Btn>
-				<Btn key="scrap">
-					<Icon src={scrap}/>
-					<Text>
-						스크랩
-					</Text>
-				</Btn>
+				{ navBtnData.map( (el: TnavBtnData)=>{
+					return 	<NavBtn key={el.key} svg={el.svg} text={el.text} />
+				})
+				}
 			</IconBox>
 		</NavBox>
   )
@@ -46,29 +43,3 @@ const IconBox = styled.div`
 	display: flex;
 	justify-content: space-between;
 `;
-
-const Btn = styled.div`
-	width: auto;
-	height: 45px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	cursor: pointer;
-`;
-
-const Icon = styled.img`
-	width: 24px;
-	height: 24px;
-	margin-bottom: 9px;
-`;
-
-const Text = styled.span`
-	width: fit-content;
-	color:#FFFFFF;
-	font-size: 10px;
-	font-weight: 600;
-	line-height: 12px;
-	letter-spacing: 0em;
-	text-align: center;
-
-`

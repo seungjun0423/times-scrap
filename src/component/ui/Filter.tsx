@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TsearchBarList } from "@/types/HomeScreenType";
+import { TsearchBarList } from "@/types/type";
 import { modalStore } from "@/model/store";
 
 function Filter( props: Omit<TsearchBarList, "key">) {

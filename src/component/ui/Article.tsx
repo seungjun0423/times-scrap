@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import star from "@/assets/svg/subtract.svg";
 import star_fill from "@/assets/svg/star-fill.svg"
-import { Tarticle } from "@/types/HomeScreenType";
+import { Tarticle } from "@/types/type";
 import { scrapStore } from "@/model/store";
 
 function Article( { article } : { article: Tarticle}) {
@@ -31,6 +31,7 @@ function Article( { article } : { article: Tarticle}) {
 		
 		if( scrapCheck ){
 			removeScrap([...scrapList.filter((el:Tarticle)=>el.id!==id)]);
+			alert("스크랩이 해제되었습니다.");
 		} else if( !scrapCheck ){
 			addScrap(article);
 		}

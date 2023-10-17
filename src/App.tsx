@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import HomeScreen from "@page/HomeScreen";
+import HomeScreen from "@/page/HomeScreen";
 import ScrapScreen from "./page/ScrapScreen";
 import Nav from "./component/Nav";
 import Modal from "./component/Modal";
@@ -9,7 +9,7 @@ function App() {
   return (
     <Apps>
 			<Section id='section'>
-				<HomeScreen/>
+				{/* <HomeScreen/> */}
 				<ScrapScreen/>
 				<Nav/>
 			</Section>

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { modalStore, filterStore } from "@/model/store";
-import { TnationList } from "@/types/HomeScreenType";
+import { TnationList } from "@/types/type";
 
 function Modal() {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];

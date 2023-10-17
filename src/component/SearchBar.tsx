@@ -1,11 +1,11 @@
 import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
-import Filter from "./Filter";
+import Filter from "./ui/Filter";
 import search from "@/assets/svg/search.svg";
 import calendar from "@/assets/svg/calendar.svg";
 import search_blue from "@/assets/svg/search-blue.svg";
 import calendaer_blue from "@/assets/svg/calendar-blue.svg";
-import { TsearchBarList } from "@/types/HomeScreenType";
+import { TsearchBarList } from "@/types/type";
 import { filterStore } from "@/model/store";
 
 function SearchBar() {
@@ -25,9 +25,9 @@ function SearchBar() {
 			filterState.nation.length === 0 ? "전체 국가" :
 			// 기본 상태인 경우 
 				typeof(filterState.nation) === "string" ? filterState.nation : 
-				// 1개 국가 이상을 선택한 경우
+				// 1개 이상을 선택한 경우
 					filterState.nation.length > 1 ? filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: 
-					// 1개 국가만 선택한 경우
+					// 1개만 선택한 경우
 						filterState.nation[0].nation;
 
 		const searchIcon = headlineState === '전체 헤드라인' ? search : search_blue;
