@@ -1,16 +1,39 @@
+import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import star from "@/assets/svg/subtract.svg";
-// import star_fill from "@/assets/svg/star-fill.svg"
+import star_fill from "@/assets/svg/star-fill.svg"
 import { Tarticle } from "@/types/HomeScreenType";
+import { scrapStore } from "@/model/store";
 
 function Article( { article } : { article: Tarticle}) {
 	const { headline, newspaper, reporter, pubDate, url, id } = article;
+	const [isScrap, setIsScrap] = useState<string>(star);
+	const scrapList = scrapStore(state=>state.scrapList);
+	const addScrap = scrapStore(state=>state.addScrap);
+	const removeScrap = scrapStore(state=>state.removeScrap);
+
+	useLayoutEffect(() => {
+		const scrapCheck = scrapList.filter(el=>el.id ===id).length !==0 ? true: false;
+
+		if( scrapCheck ){
+			setIsScrap(star_fill);
+		} else if( !scrapCheck ){
+			setIsScrap(star);
+		}
+	}, [scrapList]);
+
 	const goArticle = () => {
 		window.location.href = url;
 	}
 
-	const scrapHandler = (e) => {
-		console.log(e.target);
+	const scrapHandler = () => {
+		const scrapCheck = scrapList.filter(el=>el.id ===id).length !==0 ? true: false;
+		
+		if( scrapCheck ){
+			removeScrap([...scrapList.filter((el:Tarticle)=>el.id!==id)]);
+		} else if( !scrapCheck ){
+			addScrap(article);
+		}
 	};
 
   return (
@@ -20,7 +43,7 @@ function Article( { article } : { article: Tarticle}) {
 					{headline}
 				</Title>
 				<IconBox>
-					<Icon onClick={e=>{scrapHandler(e)}} src={star}/>
+					<Icon onClick={ scrapHandler } src={isScrap}/>
 				</IconBox>
 			</TitleBox>
 			<SourceData>

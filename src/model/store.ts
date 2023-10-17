@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { TnationList } from '@/types/HomeScreenType';
+import { Tarticle, TnationList } from '@/types/HomeScreenType';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 type TmodalStore = {
@@ -20,7 +20,13 @@ type TfilterStore = {
 			date: string;
 			nation: string | TnationList[]
 		}) => void;
-}
+};
+
+type TscrapStore = {
+	scrapList: Tarticle[];
+	addScrap: (input: Tarticle) => void;
+	removeScrap: (input: Tarticle[]) => void;
+};
 
 const modalStore = create<TmodalStore>((set) => ({
 	modalState: false,
@@ -36,17 +42,18 @@ const filterStore = create<TfilterStore>((set) => ({
 	setFilterState: (input) => set({filterState: input}),
 }));
 
-
-export const scrapStore = create(
-  persist(
-    (set, get): any => ({
-			id: null,
-			setStore: (input: number | null)=> set({id: input})
+/** localStorage */
+const scrapStore = create(
+  persist<TscrapStore>(
+    (set) => ({
+			scrapList: [],
+			addScrap: (input)=> set((state)=>({scrapList:[...state.scrapList, input]})),
+			removeScrap: (input)=> set(({scrapList: [...input]})),
     }),
     {
-      name: 'state-storage', 
+      name: 'scrap-storage', 
       storage: createJSONStorage(() => localStorage), 
     }
   )
 )
-export { modalStore, filterStore };
+export { modalStore, filterStore, scrapStore };
