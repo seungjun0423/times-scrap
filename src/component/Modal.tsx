@@ -1,9 +1,9 @@
-import { useLayoutEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { modalStore, filterStore } from "@/model/store";
 import { TnationList } from "@/types/type";
 
-function Modal() {
+function Modal({ page }: { page: string }) {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 	const modalState = modalStore( state => state.modalState);
 	const setFilterState = filterStore( state => state.setFilterState);
@@ -24,9 +24,24 @@ function Modal() {
 	const [modalHeight, setModalHeight] = useState<string>('0');
 	const homescreenHeight = document.getElementById("section")?.clientHeight;
 	
-	useLayoutEffect(() => {
+	useEffect(() => {
 		setModalHeight(`${homescreenHeight}px`);
 	}, [homescreenHeight])
+
+	useEffect(() => {
+		setNation([ 
+			{nation: "대한민국", isSelected: false, en: "south korea"},
+			{nation: "중국", isSelected: false, en: "china"}, 
+			{nation: "일본", isSelected: false, en: "japan"}, 
+			{nation: "미국", isSelected: false, en: "usa"}, 
+			{nation: "북한", isSelected: false, en: "north korea"}, 
+			{nation: "러시아", isSelected: false, en: "russia"}, 
+			{nation: "프랑스", isSelected: false, en: "france"}, 
+			{nation: "영국", isSelected: false, en: "england"}, 
+			{nation:"북한", isSelected: false, en: "north korea"}
+		])
+	}, [page])
+	
 
 	const headlineHandler = ( input: string) => {
 		// eslint-disable-next-line no-useless-escape

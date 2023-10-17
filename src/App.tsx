@@ -16,8 +16,7 @@ function App() {
 		} else if( page === "scrap"){
 			setPage("home");
 		}
-		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'})
-		console.log(page);
+		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
 	}
 
   return (
@@ -30,7 +29,7 @@ function App() {
 				}
 				<Nav pageHandler={pageHandler}/>
 			</Section>
-			<Modal/>
+			<Modal page={page}/>
     </Apps>
   )
 }
