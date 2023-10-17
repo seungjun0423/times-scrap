@@ -41,6 +41,7 @@ function Modal() {
 				el.isSelected = false; 
 				return el;
 		})]);
+		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
 		setModalState();
 	}
 

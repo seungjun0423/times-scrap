@@ -52,6 +52,7 @@ const Btn = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	cursor: pointer;
 `;
 
 const Icon = styled.img`

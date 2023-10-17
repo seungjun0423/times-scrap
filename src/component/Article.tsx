@@ -108,12 +108,12 @@ const IconBox = styled.div`
 	height: 24px;
 	padding: 4px;
 	gap: 10px;
-	cursor: pointer;
 `;
 
 const Icon = styled.img`
 	width: 16px;
 	height: 16px;
+	cursor: pointer;
 `;
 
 const SourceData = styled.div`
