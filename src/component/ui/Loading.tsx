@@ -15,8 +15,7 @@ const Background = styled.div`
 	width: 100%;
 	max-width: 560px;
 	height: 100%;
-	max-height: 768px;
-	border-radius: 30px;
+	border-radius: 0 0 30px 30px;
 	background-color: rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: center;

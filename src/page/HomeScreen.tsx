@@ -1,18 +1,23 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/Modal";
-import { getTodayHeadline } from "@/api/api"; 
+import { getData } from "@/api/api"; 
 import { TarticleData } from "@/types/HomeScreenType";
-import { serviceFormat, apiFormat, infiniteParams } from "@/hooks/fomatter";
+import { serviceFormat } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
 import Loading from "@/component/ui/Loading";
 import Fetching from "@/component/ui/Fetching";
 import { filterStore } from "@/model/store";
 
 function HomeScreen() {
+	// const queryClient = useQueryClient();
+	const fetchFn = ({ pageParam = 1}) => getData(pageParam);
+	const filterState = filterStore( state => state.filterState);
+	const useFilter = filterState.headline !== "전체 헤드라인" || filterState.date !== "전체 날짜" || filterState.nation !== "전체 국가";
+	const loadingRef = useRef<HTMLDivElement>(null);
 	const {
     data,
 		isLoading,
@@ -22,30 +27,35 @@ function HomeScreen() {
   } = useInfiniteQuery({
 			queryKey:['todayHeadline'], 
 			queryFn: (pageParam)=>fetchFn(pageParam), 
-      getNextPageParam: (lastPage) => lastPage[0] ? infiniteParams( apiFormat(lastPage[0].pub_date) ):false, 
-      staleTime: 1000 * 60 * 5, 
+      getNextPageParam: ( lastPage, allPages ) => Number(allPages.length)+1,
+			staleTime: 1000 *60 * 5,
       cacheTime: 1000 * 60 * 5
 		});
-	const articlePages = data?.pages;
-	const filterState = filterStore( state => state.filterState);
-	console.log("헤드라인",filterState.headline);
-	console.log("날짜",filterState.date);
-	// console.log(filterState.nation);
-	// console.log(filterState.headline !== "전체 헤드라인" && filterState.date !== "전체 날짜" && filterState.nation !== "전체 국가");
-	const loadingRef = useRef<HTMLDivElement>(null);
-	const fetchFn = ({ pageParam = infiniteParams(apiFormat(new Date())) }) => getTodayHeadline(pageParam);
+		// const cachedData = queryClient.getQueryData(['todayHeadline']);
+		// console.log("첫번째",cachedData);
 
-		useEffect(() => {
-			if (loadingRef.current && hasNextPage) {
-				const observer = new IntersectionObserver(
-					entries => entries[0].isIntersecting && fetchNextPage(),
-					{ threshold: 1 }
-				);
-				observer.observe(loadingRef.current);
+	// useEffect(() => {
+	// 	queryClient.prefetchInfiniteQuery({
+	// 		queryKey:['todayHeadline'], 
+	// 		queryFn: (pageParam)=>fetchFn(pageParam), 
+	// 		getNextPageParam: ( lastPage, allPages ) => console.log("두번째",lastPage),
+	// 		// staleTime: 1000 *60 * 5,
+	// 		cacheTime: 1000 * 60 * 5
+	// 	});
+	// }
+	// , []);
 
-				return () => observer.disconnect();
-			}
-		}, [hasNextPage]);
+	useEffect(() => {
+		if (loadingRef.current && hasNextPage) {
+			const observer = new IntersectionObserver(
+				entries => entries[0].isIntersecting && fetchNextPage(),
+				{ threshold: 1 }
+			);
+			observer.observe(loadingRef.current);
+
+			return () => observer.disconnect();
+		}
+	}, [hasNextPage]);
 
   return (
 		<HomeScreenBox>
@@ -53,7 +63,7 @@ function HomeScreen() {
 				<SearchBar/>
 				{isLoading ? <Loading/>:<></>}
 				<ArticleList>
-					{ articlePages?.map( page => 
+					{ data?.pages?.map( page => 
 							page.map((el: TarticleData, index: number) => {
 								const article = {
 									headline: el.headline.main,
@@ -91,7 +101,7 @@ const HomeScreens = styled.main`
 	width: 100%;
 	max-width: 560px;
 	height: 100%;
-	max-height: 768px;
+	/* max-height: 768px; */
 	background-color: #F0F1F4;
 	border-radius: 30px;
 	overflow-x: scroll;

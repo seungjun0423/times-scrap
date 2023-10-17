@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Filter from "./ui/Filter";
 import search from "@/assets/svg/search.svg";
 import calendar from "@/assets/svg/calendar.svg";
+import search_blue from "@/assets/svg/search-blue.svg";
+import calendaer_blue from "@/assets/svg/calendar-blue.svg";
 import { TsearchBarList } from "@/types/HomeScreenType";
 import { filterStore } from "@/model/store";
 
@@ -15,21 +17,24 @@ function SearchBar() {
 	])
 
 	useLayoutEffect(() => {
-		const headlineData = filterState.headline ? filterState.headline:"전체 헤드라인";
-		const dateData = filterState.date ? filterState.date:"전체 날짜";
+		const headlineState = filterState.headline ? filterState.headline:"전체 헤드라인";
+		const dateState = filterState.date ? filterState.date:"전체 날짜";
 
-		const nationData = !filterState.nation[0] ? 
+		const nationState = filterState.nation.length === 0 ? 
 			"전체 국가" :
 			typeof(filterState.nation) === "string" ? 
 				filterState.nation : 
 				filterState.nation.length > 1 ? 
 					filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: 
 					filterState.nation[0].nation;
-					
+
+		const searchIcon = headlineState === '전체 헤드라인' ? search : search_blue;
+		const calendarIcon = dateState === '전체 날짜' ? calendar : calendaer_blue;  		
+						
 		setList([
-			{ key: "Headline", svg: search, text: headlineData }, 
-			{ key: "Date", svg: calendar, text: dateData }, 
-			{ key: "Nation", svg: "", text: nationData }, 
+			{ key: "Headline", svg: searchIcon, text: headlineState }, 
+			{ key: "Date", svg: calendarIcon, text: dateState }, 
+			{ key: "Nation", svg: "", text: nationState }, 
 		])
 	}, [filterState])
 	
@@ -49,18 +54,20 @@ export default SearchBar;
 
 const SearchBox = styled.div`
 	width: 100%;
-	height: 60px;
+	height: auto;
 	position: sticky;
 	top: 0;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #C4C4C4;
+	padding-left: 20px;
+	padding-top: 13px;
+	padding-bottom: 13px;
 `;
 
 const UiBox = styled.div`
-	width: fit-content;
+	width: 100%;
 	height: 100%;
 	display: flex;
 	align-items: center;
-	padding-left: 20px;
 	gap: 7px;
 `;

@@ -24,10 +24,11 @@ const FilterBox = styled.div`
 	display: flex;
 	align-items: center;
 	padding-top: 6px;
+	padding-right: 12px;
 	padding-bottom: 4px;
 	padding-left: 12px;
-	padding-right: 12px;
 	border: 1px solid #C4C4C4;
+	/* border: 1px solid #82B0F4; */
 	border-radius: 30px;
 	gap: 4px;
 	cursor: pointer;
@@ -40,11 +41,11 @@ const Icon = styled.img`
 
 const Text = styled.span`
 	width: 100%;
-	height: 100%;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	height: 24px;
 	color: #6D6D6D;
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: -0.04em;
+	display: flex;
+	align-items: center;
 `;

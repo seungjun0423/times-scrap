@@ -114,7 +114,7 @@ const ModalBox = styled.div`
 	width: 100%;
 	max-width: 560px;
 	height: 100%;
-	max-height: 768px;
+	/* max-height: 768px; */
 	border-radius: 30px;
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.5);
