@@ -1,17 +1,34 @@
+import { useState } from "react";
 import styled from "styled-components";
 import HomeScreen from "@/page/HomeScreen";
 import ScrapScreen from "./page/ScrapScreen";
 import Nav from "./component/Nav";
 import Modal from "./component/Modal";
+import { filterStore } from "@/model/store";
 
 function App() {
+	const [page, setPage] = useState<string>("home");
+	const setFilterState = filterStore( state => state.setFilterState);
+
+	const pageHandler = () => {
+		if(page === "home"){
+			setPage("scrap");
+		} else if( page === "scrap"){
+			setPage("home");
+		}
+		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'})
+		console.log(page);
+	}
 
   return (
     <Apps>
 			<Section id='section'>
-				{/* <HomeScreen/> */}
-				<ScrapScreen/>
-				<Nav/>
+				{
+					page === "home" ?
+					<HomeScreen/> :
+					<ScrapScreen/>
+				}
+				<Nav pageHandler={pageHandler}/>
 			</Section>
 			<Modal/>
     </Apps>
@@ -34,7 +51,6 @@ const Section = styled.section`
 	width: 100%;
 	max-width: 560px;
 	height: 100%;
-	/* max-height: 768px; */
 	background-color: #F0F1F4;
 	border-radius: 30px;
 	overflow-x: scroll;

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { TnavBtnData } from "@/types/type";
 
-function NavBtn( { key, svg, text} : TnavBtnData){
+function NavBtn( { pageHandler ,svg, text} : {pageHandler: ()=> void} & TnavBtnData){
 	return (
-		<Btn key={key}>
+		<Btn onClick={()=>{pageHandler()}}>
 			<Icon src={svg}/>
 			<Text>
 				{text}

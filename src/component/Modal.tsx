@@ -272,8 +272,8 @@ const Div = styled.div`
 	height: 24px;
 	color: #FFFFFF;
 	font-size: 16px;
-	/* font-weight: 600; */
-	font-weight: 400;
+	font-weight: 600;
+	/* font-weight: 400; */
 	line-height: 24px;
 	letter-spacing: -0.05em;
 	text-align: center;
