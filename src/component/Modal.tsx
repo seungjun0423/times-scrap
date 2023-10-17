@@ -21,7 +21,7 @@ function Modal() {
 		{nation: "영국", isSelected: false, en: "england"}, 
 		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
-	
+
 	const headlineHandler = ( input: string) => {
 		const onlyEn = /^[A-Za-z\s]*$/;    
 
@@ -32,6 +32,7 @@ function Modal() {
 		}
 	};
 
+	/** blank click handler : 모달창 이외 클릭시 모달창 종료 */
 	const bClickHandler = () => {
 		setHeadline('');
 		setDate('');
@@ -43,11 +44,13 @@ function Modal() {
 		setModalState();
 	}
 
+	/** nation select handler : 국가 선택 기능 */
 	const nSelectHandler = ( index: number ) => {
 		nation[index].isSelected = !nation[index].isSelected;
 		setNation([...nation]);
 	};
 	
+	/** 필터 적용하기 버튼 */
 	const filterHandler = () => {
 		const filterData = {
 			headline: headline ? headline: '전체 헤드라인',
@@ -108,7 +111,7 @@ function Modal() {
 							}
 						</NationListBox>
 					</Sector>
-					<SubmitBtn onClick={filterHandler}>
+					<SubmitBtn onClick={ filterHandler }>
 						<Div>
 							{labels[3]}
 						</Div>
