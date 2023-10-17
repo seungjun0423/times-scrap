@@ -1,35 +1,39 @@
 import styled from "styled-components";
-import substract from "@/assets/svg/subtract.svg";
+import star from "@/assets/svg/subtract.svg";
+// import star_fill from "@/assets/svg/star-fill.svg"
 import { Tarticle } from "@/types/HomeScreenType";
 
 function Article( { article } : { article: Tarticle}) {
-
+	const { headline, newspaper, reporter, pubDate, url, id } = article;
 	const goArticle = () => {
-		window.location.href = article.url;
+		window.location.href = url;
 	}
+
+	const scrapHandler = (e) => {
+		console.log(e.target);
+	};
+
   return (
     <ArticleBox>
-
 			<TitleBox>
 				<Title onClick={goArticle}>
-					{article.headline}
+					{headline}
 				</Title>
 				<IconBox>
-					<Icon src={substract}/>
+					<Icon onClick={e=>{scrapHandler(e)}} src={star}/>
 				</IconBox>
 			</TitleBox>
-
 			<SourceData>
 				<Published>
 					<Source>
-						{article.newspaper}
+						{newspaper}
 					</Source>
 					<Source>
-						{article.reporter}
+						{reporter}
 					</Source>
 				</Published>
 				<PubDate>
-					{article.pubDate}
+					{pubDate}
 				</PubDate>
 			</SourceData>
     </ArticleBox>

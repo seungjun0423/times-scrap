@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { TnationList } from '@/types/HomeScreenType';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 type TmodalStore = {
 	modalState: boolean;
@@ -35,4 +36,17 @@ const filterStore = create<TfilterStore>((set) => ({
 	setFilterState: (input) => set({filterState: input}),
 }));
 
+
+export const scrapStore = create(
+  persist(
+    (set, get): any => ({
+			id: null,
+			setStore: (input: number | null)=> set({id: input})
+    }),
+    {
+      name: 'state-storage', 
+      storage: createJSONStorage(() => localStorage), 
+    }
+  )
+)
 export { modalStore, filterStore };

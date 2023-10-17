@@ -1,49 +1,34 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/Article";
 import Modal from "@/component/Modal";
 import { getData } from "@/api/api"; 
-import { TarticleData } from "@/types/HomeScreenType";
+import { Tarticle, TarticleData } from "@/types/HomeScreenType";
 import { serviceFormat } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
 import Loading from "@/component/ui/Loading";
 import Fetching from "@/component/ui/Fetching";
-// import { filterStore } from "@/model/store";
 
 function HomeScreen() {
-	// const queryClient = useQueryClient();
-	const fetchFn = ({ pageParam = 1}) => getData(pageParam);
-	// const filterState = filterStore( state => state.filterState);
-	// const useFilter = filterState.headline !== "전체 헤드라인" || filterState.date !== "전체 날짜" || filterState.nation !== "전체 국가";
+	const fetchFn = ({ pageParam = 1}: { pageParam: number}) => getData(pageParam);
 	const loadingRef = useRef<HTMLDivElement>(null);
+
 	const {
     data,
 		isLoading,
 		isFetchingNextPage,
+		isError,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
 			queryKey:['todayHeadline'], 
-			queryFn: (pageParam)=>fetchFn(pageParam), 
-      getNextPageParam: ( lastPage, allPages ) => Number(allPages.length)+1,
+			queryFn: ({pageParam})=>fetchFn({pageParam}), 
+      getNextPageParam: ( _lastPage, allPages ) => Number(allPages.length)+1,
 			staleTime: 1000 *60 * 5,
       cacheTime: 1000 * 60 * 5
 		});
-		// const cachedData = queryClient.getQueryData(['todayHeadline']);
-		// console.log("첫번째",cachedData);
-
-	// useEffect(() => {
-	// 	queryClient.prefetchInfiniteQuery({
-	// 		queryKey:['todayHeadline'], 
-	// 		queryFn: (pageParam)=>fetchFn(pageParam), 
-	// 		getNextPageParam: ( lastPage, allPages ) => console.log("두번째",lastPage),
-	// 		// staleTime: 1000 *60 * 5,
-	// 		cacheTime: 1000 * 60 * 5
-	// 	});
-	// }
-	// , []);
 
 	useEffect(() => {
 		if (loadingRef.current && hasNextPage) {
@@ -55,6 +40,7 @@ function HomeScreen() {
 
 			return () => observer.disconnect();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [hasNextPage]);
 
   return (
@@ -65,17 +51,18 @@ function HomeScreen() {
 				<ArticleList>
 					{ data?.pages?.map( page => 
 							page.map((el: TarticleData, index: number) => {
-								const article = {
+								const article: Tarticle = {
 									headline: el.headline.main,
 									newspaper: el.source,
 									reporter: el.byline.original,
 									pubDate: serviceFormat(el.pub_date),
 									url: el.web_url,
+									id: el._id
 								};
 								return <Article key={index} article={article}/>;
 					}))}
-					{isFetchingNextPage? <Fetching/>:<></>}
-
+					{isFetchingNextPage ? <Fetching/>:<></>}
+					{isError ? "에러 발생":<></>}
 					<div ref={loadingRef} />
 				</ArticleList>
 				<Nav/>

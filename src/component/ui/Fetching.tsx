@@ -20,5 +20,6 @@ const Background = styled.div`
 	justify-content: center;
 	align-items: center;
 	font-size: 32px;
+	color: gray;
 `;
 

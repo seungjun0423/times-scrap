@@ -21,7 +21,7 @@ export default Filter;
 const FilterBox = styled.div<{$input: boolean}>`
 	width: fit-content;
 	max-width: 120px;
-	height: auto;
+	height: 34px;
 	display: flex;
 	align-items: center;
 	padding-top: 6px;
@@ -32,6 +32,7 @@ const FilterBox = styled.div<{$input: boolean}>`
 	border-radius: 30px;
 	gap: 4px;
 	cursor: pointer;
+
 `;
 
 const Icon = styled.img`
@@ -41,17 +42,14 @@ const Icon = styled.img`
 
 const Text = styled.span<{$input: boolean}>`
 	width: 100%;
-	height: 24px;
+	min-width: 50px;
+	height: fit-content;
 	color: ${ props => props.$input ? "#3478F6":"#6D6D6D"};
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: -0.04em;
-	display: flex;
-	align-items: center;
-	justify-content:left;
 	white-space: nowrap;
 	overflow: hidden; 
   text-overflow: ellipsis; 
-	word-break: break-all;
-
+	text-align: center;
 `;

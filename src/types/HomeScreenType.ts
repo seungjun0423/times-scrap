@@ -11,6 +11,7 @@ type TarticleData = {
 	byline: { original: string; }; 
 	pub_date: string; 
 	web_url: string;
+	_id: string;
 }
 
 type Tarticle = {
@@ -19,6 +20,7 @@ type Tarticle = {
 	reporter: string;
 	pubDate: string;
 	url: string;
+	id: string;
 };
 
 

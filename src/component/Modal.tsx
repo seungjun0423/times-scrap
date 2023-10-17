@@ -21,8 +21,8 @@ function Modal() {
 		{nation: "영국", isSelected: false, en: "england"}, 
 		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
-
 	const headlineHandler = ( input: string) => {
+		// eslint-disable-next-line no-useless-escape
 		const onlyEn = new RegExp(/^[A-Za-z0-9\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);    
 
 		if(!onlyEn.test(input)){
@@ -76,6 +76,7 @@ function Modal() {
 							onChange={ e =>{
 								headlineHandler(e.target.value);
 							}}
+							autoFocus={true}
 						/>
 					</Sector>
 
