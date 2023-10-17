@@ -67,10 +67,13 @@ const Title = styled.span`
 	line-height: 28px;
 	letter-spacing: -0.05em;
 	padding-right: 6px;
-	white-space: nowrap; 
+	cursor: pointer;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+	white-space: normal; 
   overflow: hidden; 
   text-overflow: ellipsis; 
-	cursor: pointer;
 `;
 
 const IconBox = styled.div`
