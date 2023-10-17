@@ -10,13 +10,13 @@ import { serviceFormat } from "@/hooks/fomatter";
 import Nav from "@/component/Nav";
 import Loading from "@/component/ui/Loading";
 import Fetching from "@/component/ui/Fetching";
-import { filterStore } from "@/model/store";
+// import { filterStore } from "@/model/store";
 
 function HomeScreen() {
 	// const queryClient = useQueryClient();
 	const fetchFn = ({ pageParam = 1}) => getData(pageParam);
-	const filterState = filterStore( state => state.filterState);
-	const useFilter = filterState.headline !== "전체 헤드라인" || filterState.date !== "전체 날짜" || filterState.nation !== "전체 국가";
+	// const filterState = filterStore( state => state.filterState);
+	// const useFilter = filterState.headline !== "전체 헤드라인" || filterState.date !== "전체 날짜" || filterState.nation !== "전체 국가";
 	const loadingRef = useRef<HTMLDivElement>(null);
 	const {
     data,

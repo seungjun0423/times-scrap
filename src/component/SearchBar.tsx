@@ -11,9 +11,9 @@ import { filterStore } from "@/model/store";
 function SearchBar() {
 	const filterState = filterStore(state=>state.filterState);
 	const [list, setList] = useState<TsearchBarList[]>([ 
-		{ key: "Headline", svg: search, text: "전체 헤드라인" }, 
-		{ key: "Date", svg: calendar, text: "전체 날짜" }, 
-		{ key: "Nation", svg: "", text: "전체 국가" }, 
+		{ key: "Headline", svg: search, text: "전체 헤드라인", input: false }, 
+		{ key: "Date", svg: calendar, text: "전체 날짜", input: false }, 
+		{ key: "Nation", svg: "", text: "전체 국가", input: false }, 
 	])
 
 	useLayoutEffect(() => {

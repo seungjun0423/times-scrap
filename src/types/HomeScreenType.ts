@@ -2,6 +2,7 @@ type TsearchBarList = {
 	key: string;
 	svg: string;
 	text: string;
+	input: boolean;
 };
 
 type TarticleData = { 

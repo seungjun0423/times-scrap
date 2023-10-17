@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { TsearchBarList } from "@/types/HomeScreenType";
-import { modalStore } from "@/model/store";
+import { modalStore, filterStore } from "@/model/store";
 
 function Filter( props: Omit<TsearchBarList, "key">) {
-	const { svg, text } = props;
+	const { svg, text, input } = props;
 	const setModalState = modalStore( state => state.setModalState);
-
+	const filterState = filterStore( state => state.filterState);
   return (
     <FilterBox onClick={setModalState}>
 			{svg ? <Icon src={svg}/>: <></>}
