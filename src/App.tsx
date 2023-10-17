@@ -27,7 +27,7 @@ function App() {
 					<HomeScreen/> :
 					<ScrapScreen pageHandler={pageHandler}/>
 				}
-				<Nav pageHandler={pageHandler}/>
+				<Nav page={page} pageHandler={pageHandler}/>
 			</Section>
 			<Modal page={page}/>
     </Apps>

@@ -1,14 +1,30 @@
+import { useState, useEffect, } from "react";
 import styled from "styled-components";
 import NavBtn from "./ui/NavBtn";
-import home from "@/assets/svg/home-white.svg";
-import scrap from "@/assets/svg/scrap-gray.svg";
+import home_white from "@/assets/svg/home-white.svg";
+import home_gray from "@/assets/svg/home-gray.svg";
+import scrap_gray from "@/assets/svg/scrap-gray.svg";
+import scrap_white from "@/assets/svg/scrap-white.svg"; 
 import { TnavBtnData } from "@/types/type";
 
-function Nav({ pageHandler }: { pageHandler: (text: string) => void}) {
-	const navBtnData: TnavBtnData[] = [
-		{key: "home", svg: home, text: "홈"},
-		{key: "scrap",svg: scrap, text: "스크랩"}
-	];
+function Nav({ page, pageHandler }: { page: string, pageHandler: (text: string) => void}) {
+	const [navBtnData, setNavBtnData] = useState<TnavBtnData[]>([
+		{key: "home", svg: home_white, text: "홈"},
+		{key: "scrap",svg: scrap_gray, text: "스크랩"}
+	]);
+	useEffect(() => {
+		if( page === "home"){
+			setNavBtnData([
+				{key: "home", svg: home_white, text: "홈"},
+				{key: "scrap",svg: scrap_gray, text: "스크랩"}
+			]);
+		} else if( page === "scrap"){
+			setNavBtnData([
+				{key: "home", svg: home_gray, text: "홈"},
+				{key: "scrap",svg: scrap_white, text: "스크랩"}
+			]);
+		}
+	}, [page])
 	
   return (
 		<NavBox>

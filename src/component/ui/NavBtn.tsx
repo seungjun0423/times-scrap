@@ -14,7 +14,6 @@ function NavBtn( { pageHandler ,svg, text} : {pageHandler: (text: string)=> void
 
 export default NavBtn;
 
-
 const Btn = styled.div`
 	width: auto;
 	height: 45px;
