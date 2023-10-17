@@ -5,15 +5,15 @@ const serviceFormat = ( input: string ) => {
 	return moment(input).tz("Asia/Seoul").format("YYYY.MM.DD");
 };
 
-/** api를 이용하기 위한 포맷터 (YYYY-MM-DD)*/
-const apiFormat = ( input: string | Date) => {
-	return moment(input).tz("Asia/Seoul").format("YYYY-MM-DD");
-};
+// /** api를 이용하기 위한 포맷터 (YYYY-MM-DD)*/
+// const apiFormat = ( input: string | Date) => {
+// 	return moment(input).tz("Asia/Seoul").format("YYYY-MM-DD");
+// };
 
-const infiniteParams = ( input: string | Date ) => {
-	return moment(input).subtract(1, 'd').tz("Asia/Seoul").format("YYYY-MM-DD");
-}
+// const infiniteParams = ( input: string | Date ) => {
+// 	return moment(input).subtract(1, 'd').tz("Asia/Seoul").format("YYYY-MM-DD");
+// }
 
-export { serviceFormat, apiFormat, infiniteParams };
+export { serviceFormat };
 
 

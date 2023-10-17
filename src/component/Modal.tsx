@@ -22,7 +22,8 @@ function Modal() {
 		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
 	const [modalHeight, setModalHeight] = useState<string>('0');
-	const homescreenHeight = document.getElementById("homeScreen")?.clientHeight;
+	const homescreenHeight = document.getElementById("section")?.clientHeight;
+	
 	useLayoutEffect(() => {
 		setModalHeight(`${homescreenHeight}px`);
 	}, [homescreenHeight])
@@ -133,7 +134,7 @@ function Modal() {
 
 export default Modal;
 
-const ModalBox = styled.div<{$height:number}>`
+const ModalBox = styled.div<{$height: string}>`
 	width: 100%;
 	max-width: 560px;
 	height: ${props=>props.$height};

@@ -3,6 +3,7 @@ import home from "@/assets/svg/home-white.svg";
 import scrap from "@/assets/svg/scrap-gray.svg";
 
 function Nav() {
+
   return (
 		<NavBox>
 			<IconBox>
@@ -25,12 +26,12 @@ function Nav() {
 
 export default Nav;
 
-const NavBox = styled.div`
+const NavBox = styled.aside`
 	width: 100%;
 	max-width: 560px;
 	height: 85px;
 	position: sticky;
-	bottom:0;
+	bottom: 0;
 	background-color: #000000;
 	border-radius: 30px;
 	padding-top: 20px;

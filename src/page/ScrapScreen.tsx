@@ -1,9 +1,9 @@
-function ScrapScreen() {
+import styled from "styled-components";
 
-  return (
-    <>
-    </>
-  )
+function ScrapScreen(){
+	return (
+		<>
+		</>
+	)
 }
-
 export default ScrapScreen;

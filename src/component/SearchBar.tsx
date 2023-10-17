@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
-import Filter from "./ui/Filter";
+import Filter from "./Filter";
 import search from "@/assets/svg/search.svg";
 import calendar from "@/assets/svg/calendar.svg";
 import search_blue from "@/assets/svg/search-blue.svg";
