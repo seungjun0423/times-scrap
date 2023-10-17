@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { modalStore, filterStore } from "@/model/store";
 import { TnationList } from "@/types/HomeScreenType";
@@ -21,6 +21,12 @@ function Modal() {
 		{nation: "영국", isSelected: false, en: "england"}, 
 		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
+	const [modalHeight, setModalHeight] = useState<string>('0');
+	const homescreenHeight = document.getElementById("homeScreen")?.clientHeight;
+	useLayoutEffect(() => {
+		setModalHeight(`${homescreenHeight}px`);
+	}, [homescreenHeight])
+
 	const headlineHandler = ( input: string) => {
 		// eslint-disable-next-line no-useless-escape
 		const onlyEn = new RegExp(/^[A-Za-z0-9\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);    
@@ -65,7 +71,7 @@ function Modal() {
   return (
 		<>
 		{modalState ?
-			<ModalBox onClick={bClickHandler}>
+			<ModalBox onClick={bClickHandler} $height={modalHeight}>
 				<InputBox onClick={(e) => e.stopPropagation()}>
 
 					<Sector key="headline">
@@ -127,11 +133,10 @@ function Modal() {
 
 export default Modal;
 
-const ModalBox = styled.div`
+const ModalBox = styled.div<{$height:number}>`
 	width: 100%;
 	max-width: 560px;
-	height: 100%;
-	/* max-height: 768px; */
+	height: ${props=>props.$height};
 	border-radius: 30px;
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.5);

@@ -45,7 +45,7 @@ function HomeScreen() {
 
   return (
 		<HomeScreenBox>
-			<HomeScreens>
+			<HomeScreens id="homeScreen">
 				<SearchBar/>
 				{isLoading ? <Loading/>:<></>}
 				<ArticleList>
