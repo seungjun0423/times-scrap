@@ -20,13 +20,15 @@ function SearchBar() {
 		const headlineState = filterState.headline ? filterState.headline:"전체 헤드라인";
 		const dateState = filterState.date ? filterState.date:"전체 날짜";
 
-		const nationState = filterState.nation.length === 0 ? 
-			"전체 국가" :
-			typeof(filterState.nation) === "string" ? 
-				filterState.nation : 
-				filterState.nation.length > 1 ? 
-					filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: 
-					filterState.nation[0].nation;
+		const nationState = 
+		// 국가를 선택하지 않은 경우
+			filterState.nation.length === 0 ? "전체 국가" :
+			// 기본 상태인 경우 
+				typeof(filterState.nation) === "string" ? filterState.nation : 
+				// 1개 국가 이상을 선택한 경우
+					filterState.nation.length > 1 ? filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: 
+					// 1개 국가만 선택한 경우
+						filterState.nation[0].nation;
 
 		const searchIcon = headlineState === '전체 헤드라인' ? search : search_blue;
 		const calendarIcon = dateState === '전체 날짜' ? calendar : calendaer_blue;  		

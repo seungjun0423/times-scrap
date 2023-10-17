@@ -21,6 +21,16 @@ function Modal() {
 		{nation: "영국", isSelected: false, en: "england"}, 
 		{nation:"북한", isSelected: false, en: "north korea"}
 	]);
+	
+	const headlineHandler = ( input: string) => {
+		const onlyEn = /^[A-Za-z\s]*$/;    
+
+		if(!onlyEn.test(input)){
+			alert("현재는 영문 검색만 가능합니다.")
+		} else {
+			setHeadline(input);
+		}
+	};
 
 	const bClickHandler = () => {
 		setHeadline('');
@@ -42,7 +52,7 @@ function Modal() {
 		const filterData = {
 			headline: headline ? headline: '전체 헤드라인',
 			date: date.replaceAll('-','.') ? date.replaceAll('-','.'): '전체 날짜',
-			nation: nation.filter(el=> el.isSelected).length !==0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
+			nation: nation.filter(el=> el.isSelected).length !== 0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
 		};
 		setFilterState(filterData);
 		setModalState();
@@ -60,7 +70,9 @@ function Modal() {
 						</Label>
 						<InputHeadline
 							value={headline}
-							onChange={e=>{setHeadline(e.target.value)}}
+							onChange={ e =>{
+								headlineHandler(e.target.value);
+							}}
 						/>
 					</Sector>
 
