@@ -1,6 +1,6 @@
 import { TarticleData, TfilterState } from "@/types/type";
 import axios from "axios";
-import { getMonthDate } from "@/lib/fomatter";
+import { getMonthDate, apiFormat } from "@/lib/fomatter";
 const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
 
 /**Parameter: (date: YYYY-MM-DD), 단일 파라미터 date 값을 인자로 받으며 YYYY-MM-DD 포맷의 형태로 받는다.   */
@@ -18,7 +18,7 @@ const getData = ( {pageParam}:{pageParam:number},{headline, date, nation}:Tfilte
 			url += `headline:(${headline}) AND `;
 		}
 		if(date !== '전체 날짜'){
-			url += `pub_date:(${date}) AND `;
+			url += `pub_date:(${apiFormat(date)}) AND `;
 		}
 		if( (nation !== '전체 국가') && (typeof nation=== 'string')){
 			url += `glocations:(${nation})`
@@ -26,12 +26,15 @@ const getData = ( {pageParam}:{pageParam:number},{headline, date, nation}:Tfilte
 			let str: string = '';
 			for(let i=0;i<nation.length;i++){
 				if(i !== nation.length-1){
-					str += `glocations:(${nation[i]}) AND `;
+					str += `glocations:(${nation[i].en}) AND `;
 				} else {
-					str += `glocations:(${nation[i]})`;
+					str += `glocations:(${nation[i].en})`;
 				}
 			}
 			url += str;
+		}
+		if(url.slice(-5,)=== " AND "){
+			url = url.slice(0,-5);
 		}
 		const req = axios.get(
 			`${VITE_API_URL}fq=${url}&api-key=${VITE_API_KEY}`

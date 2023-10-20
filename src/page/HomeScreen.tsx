@@ -23,7 +23,7 @@ function HomeScreen() {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-			queryKey:['todayHeadline'], 
+			queryKey:['todayHeadline',filterHome], 
 			queryFn: ({pageParam})=>fetchFn({pageParam}, filterHome ), 
       getNextPageParam: ( _lastPage, allPages ) => Number(allPages.length)+1,
 			staleTime: 1000 * 60 * 5,
