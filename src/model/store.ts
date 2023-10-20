@@ -2,24 +2,40 @@ import { create } from 'zustand';
 import { Tarticle, TnationList } from '@/types/type';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+type Tpage = {
+	page: string;
+	setPage: (input: string) => void;
+};
+
 type TmodalStore = {
 	modalState: boolean;
 	setModalState: () => void;
 };
 
 type TfilterStore = {
-	filterState: {
+	filterHome: {
+		headline: string;
+		date: string;
+		nation: string | TnationList[]
+	};
+	filterScrap: {
 		headline: string;
 		date: string;
 		nation: string | TnationList[]
 	};
 	
-	setFilterState: (
+	setFilterHome: (
 		input: {
 			headline: string;
 			date: string;
 			nation: string | TnationList[]
 		}) => void;
+		setFilterScrap: (
+			input: {
+				headline: string;
+				date: string;
+				nation: string | TnationList[]
+			}) => void;
 };
 
 type TscrapStore = {
@@ -28,18 +44,29 @@ type TscrapStore = {
 	removeScrap: (input: Tarticle[]) => void;
 };
 
+const pageStore = create<Tpage>((set) => ({
+	page: "home",
+	setPage: (input) => set(({ page: input})),
+}));
+
 const modalStore = create<TmodalStore>((set) => ({
 	modalState: false,
 	setModalState: () => set((state) => ({ modalState: !state.modalState})),
 }));
 
 const filterStore = create<TfilterStore>((set) => ({
-	filterState: {
+	filterHome: {
 		headline: '전체 헤드라인',
 		date: '전체 날짜',
 		nation: '전체 국가',
 	},
-	setFilterState: (input) => set({filterState: input}),
+	filterScrap: {
+		headline: '전체 헤드라인',
+		date: '전체 날짜',
+		nation: '전체 국가',
+	},
+	setFilterHome: (input) => set({filterHome: input}),
+	setFilterScrap: (input) => set({filterHome: input}),
 }));
 
 /** localStorage */
@@ -56,4 +83,4 @@ const scrapStore = create(
     }
   )
 )
-export { modalStore, filterStore, scrapStore };
+export { pageStore, modalStore, filterStore, scrapStore };

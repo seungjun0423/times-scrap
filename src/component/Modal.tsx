@@ -6,8 +6,8 @@ import { TnationList } from "@/types/type";
 function Modal({ page }: { page: string }) {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 	const modalState = modalStore( state => state.modalState);
-	const filterState = filterStore( state => state.filterState);
-	const setFilterState = filterStore( state => state.setFilterState);
+	// const filterHome = filterStore( state => state.filterHome);
+	const setFilterHome = filterStore( state => state.setFilterHome);
 	const setModalState = modalStore( state => state.setModalState);
 	const [headline, setHeadline] = useState<string>('');
 	const [date, setDate] = useState<string>('');
@@ -44,7 +44,6 @@ function Modal({ page }: { page: string }) {
 			{nation: "영국", isSelected: false, en: "england"}, 
 			{nation:"북한", isSelected: false, en: "north korea"}
 		]);
-		console.log(filterState);
 	}, [page])
 
 	/** blank click handler : 모달창 이외 클릭시 모달창 종료 */
@@ -56,7 +55,7 @@ function Modal({ page }: { page: string }) {
 				el.isSelected = false; 
 				return el;
 		})]);
-		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+		setFilterHome({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
 		setModalState();
 	};
 
@@ -86,7 +85,7 @@ function Modal({ page }: { page: string }) {
 			date: date.replaceAll('-','.') ? date.replaceAll('-','.'): '전체 날짜',
 			nation: nation.filter(el=> el.isSelected).length !== 0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
 		};
-		setFilterState(filterData);
+		setFilterHome(filterData);
 		setModalState();
 	};
 

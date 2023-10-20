@@ -1,14 +1,14 @@
-import { useState } from "react";
 import styled from "styled-components";
 import HomeScreen from "@/page/HomeScreen";
 import ScrapScreen from "./page/ScrapScreen";
 import Nav from "./component/Nav";
 import Modal from "./component/Modal";
-import { filterStore } from "@/model/store";
+import { pageStore, filterStore } from "@/model/store";
 
 function App() {
-	const [page, setPage] = useState<string>("home");
-	const setFilterState = filterStore( state => state.setFilterState);
+	const page = pageStore( state => state.page);
+	const setPage = pageStore( state => state.setPage)
+	const setFilterHome = filterStore( state => state.setFilterHome);
 
 	const pageHandler = (text: string) => {
 		if(text === "홈"){
@@ -16,7 +16,7 @@ function App() {
 		} else if( text === "스크랩"){
 			setPage("scrap");
 		}
-		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+		setFilterHome({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
 	}
 
   return (

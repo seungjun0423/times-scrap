@@ -8,8 +8,8 @@ import calendaer_blue from "@/assets/svg/calendar-blue.svg";
 import { TsearchBarList } from "@/types/type";
 import { filterStore } from "@/model/store";
 
-function SearchBar() {
-	const filterState = filterStore(state=>state.filterState);
+function SearchBar({page}: { page: string }) {
+	const filterHome = filterStore(state=>state.filterHome);
 	const [list, setList] = useState<TsearchBarList[]>([ 
 		{ key: "Headline", svg: search, text: "전체 헤드라인", input: false }, 
 		{ key: "Date", svg: calendar, text: "전체 날짜", input: false }, 
@@ -17,18 +17,18 @@ function SearchBar() {
 	]);
 
 	useLayoutEffect(() => {
-		const headlineState = filterState.headline ? filterState.headline:"전체 헤드라인";
-		const dateState = filterState.date ? filterState.date:"전체 날짜";
+		const headlineState = filterHome.headline ? filterHome.headline:"전체 헤드라인";
+		const dateState = filterHome.date ? filterHome.date:"전체 날짜";
 
 		const nationState = 
 		// 국가를 선택하지 않은 경우
-			filterState.nation.length === 0 ? "전체 국가" :
+			filterHome.nation.length === 0 ? "전체 국가" :
 			// 기본 상태인 경우 
-				typeof(filterState.nation) === "string" ? filterState.nation : 
+				typeof(filterHome.nation) === "string" ? filterHome.nation : 
 				// 1개 이상을 선택한 경우
-					filterState.nation.length > 1 ? filterState.nation[0].nation+` 외 ${filterState.nation.length-1}개`: 
+					filterHome.nation.length > 1 ? filterHome.nation[0].nation+` 외 ${filterHome.nation.length-1}개`: 
 					// 1개만 선택한 경우
-						filterState.nation[0].nation;
+						filterHome.nation[0].nation;
 
 		const searchIcon = headlineState === '전체 헤드라인' ? search : search_blue;
 		const calendarIcon = dateState === '전체 날짜' ? calendar : calendaer_blue;  		
@@ -42,7 +42,11 @@ function SearchBar() {
 			{ key: "Date", svg: calendarIcon, text: dateState, input: dateInput }, 
 			{ key: "Nation", svg: "", text: nationState, input: nationInput }, 
 		])
-	}, [filterState]);
+	}, [filterHome]);
+
+	useLayoutEffect(() => {
+
+	}, [page])
 
   return (
     <SearchBox>
