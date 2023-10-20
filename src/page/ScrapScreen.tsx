@@ -3,7 +3,7 @@ import styled from "styled-components";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/ui/Article";
 import { pageStore, scrapStore, filterStore, filtering } from "@/model/store";
-import { Tarticle } from "@/types/type";
+import { Tarticle, TnationList } from "@/types/type";
 import Union from "@/assets/svg/Union.svg"
 import pageHandler from "@/hooks/pageHandler";
 
@@ -37,8 +37,8 @@ function ScrapScreen(){
 					setFiltered([...new Set([...dateFilter])]);
 				}
 			}
-			if(filterScrap.nation !== '전체 국가' && filterScrap.nation.length !== 0){
-				const targets = filterScrap.nation;
+			if(filterScrap.nation !== '전체 국가' && filterScrap.nation.length !== 0 && typeof filterScrap.nation !== 'string'){
+				const targets: TnationList[] = filterScrap.nation;
 				const list = scrapList.filter(el=>el.keywords);
 				const data = targets.map((target)=>{return list.filter(el=>target.en === el.keywords.value)[0]})
 				setFiltered([...data]);
