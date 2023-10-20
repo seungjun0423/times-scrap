@@ -9,7 +9,7 @@ function NavBtn( { svg, text, }: TnavBtnData ) {
 	const setFilter = filterStore( state => state );
 
 	return (
-		<Btn onClick={()=>{pageHandler({page, setPage, setFilter})}}>
+		<Btn onClick={()=>{pageHandler({text, setPage, setFilter})}}>
 			<Icon src={svg}/>
 			<Text $isSelected={ (page==="home" && text==="홈") || (page==="scrap" && text==="스크랩")}>
 				{text}

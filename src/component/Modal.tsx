@@ -6,10 +6,10 @@ import { TnationList } from "@/types/type";
 const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 
 function Modal() {
-	
 	const page = pageStore( state => state.page);
 	const modalState = modalStore( state => state.modalState);
 	const setFilterHome = filterStore( state => state.setFilterHome);
+	const setFilterScrap = filterStore( state => state.setFilterScrap);
 	const setModalState = modalStore( state => state.setModalState);
 
 	const [headline, setHeadline] = useState<string>('');
@@ -58,7 +58,11 @@ function Modal() {
 				el.isSelected = false; 
 				return el;
 		})]);
-		setFilterHome({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+		if( page === 'home'){
+			setFilterHome({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+		} else if( page === 'scrap'){
+			setFilterScrap({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+		}
 		setModalState();
 	};
 
@@ -88,7 +92,13 @@ function Modal() {
 			date: date.replaceAll('-','.') ? date.replaceAll('-','.'): '전체 날짜',
 			nation: nation.filter(el=> el.isSelected).length !== 0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
 		};
-		setFilterHome(filterData);
+		if( page === 'home'){
+			console.log("여기는 홈",filterData);
+			setFilterHome(filterData);
+		} else if( page === 'scrap'){
+			console.log("여기는 스크랩",filterData);
+			setFilterScrap(filterData);
+		}
 		setModalState();
 	};
 
