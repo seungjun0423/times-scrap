@@ -20,8 +20,6 @@ function SearchBar() {
 
 	// homescreen: modal에서 입력된 데이터(filterStore)에 따라 지역 상태 list 관리
 	useLayoutEffect(() => {
-		console.log("필터 홈",filterHome);
-		console.log("필터 스크랩",filterScrap);
 		if( page === 'home' ){
 			const headlineState = filterHome.headline ? filterHome.headline:"전체 헤드라인";
 			const dateState = filterHome.date ? filterHome.date:"전체 날짜";

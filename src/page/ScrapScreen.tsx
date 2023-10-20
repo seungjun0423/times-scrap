@@ -29,7 +29,7 @@ function ScrapScreen(){
 								저장된 스크랩이 없습니다.
 							</Text>
 						</IconBox>
-						<Btn onClick={()=>{ pageHandler({ text: '스크랩', setPage}) }}>
+						<Btn onClick={()=>{ pageHandler({ text: '홈', setPage}) }}>
 							스크랩 하러가기
 						</Btn>
 					</Wrapper>
