@@ -1,48 +1,6 @@
 import { create } from 'zustand';
-import { Tarticle, TnationList } from '@/types/type';
+import { TfilterStore, TmodalStore, Tpage, TscrapStore } from '@/types/type';
 import { createJSONStorage, persist } from 'zustand/middleware';
-
-type Tpage = {
-	page: string;
-	setPage: (input: string) => void;
-};
-
-type TmodalStore = {
-	modalState: boolean;
-	setModalState: () => void;
-};
-
-type TfilterStore = {
-	filterHome: {
-		headline: string;
-		date: string;
-		nation: string | TnationList[]
-	};
-	filterScrap: {
-		headline: string;
-		date: string;
-		nation: string | TnationList[]
-	};
-	
-	setFilterHome: (
-		input: {
-			headline: string;
-			date: string;
-			nation: string | TnationList[]
-		}) => void;
-		setFilterScrap: (
-			input: {
-				headline: string;
-				date: string;
-				nation: string | TnationList[]
-			}) => void;
-};
-
-type TscrapStore = {
-	scrapList: Tarticle[];
-	addScrap: (input: Tarticle) => void;
-	removeScrap: (input: Tarticle[]) => void;
-};
 
 const pageStore = create<Tpage>((set) => ({
 	page: "home",

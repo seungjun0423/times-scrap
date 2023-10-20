@@ -6,8 +6,10 @@ import home_gray from "@/assets/svg/home-gray.svg";
 import scrap_gray from "@/assets/svg/scrap-gray.svg";
 import scrap_white from "@/assets/svg/scrap-white.svg"; 
 import { TnavBtnData } from "@/types/type";
+import { pageStore } from "@/model/store";
 
-function Nav({ page, pageHandler }: { page: string, pageHandler: (text: string) => void}) {
+function Nav() {
+	const page = pageStore( state => state.page);
 	const [navBtnData, setNavBtnData] = useState<TnavBtnData[]>([
 		{key: "home", svg: home_white, text: "홈"},
 		{key: "scrap",svg: scrap_gray, text: "스크랩"}
@@ -31,7 +33,7 @@ function Nav({ page, pageHandler }: { page: string, pageHandler: (text: string) 
 		<NavBox>
 			<IconBox>
 				{ navBtnData.map( (el: TnavBtnData)=>{
-					return 	<NavBtn key={el.key} svg={el.svg} page={page} text={el.text} pageHandler={pageHandler}/>
+					return 	<NavBtn key={el.key} svg={el.svg} text={el.text}/>
 				})
 				}
 			</IconBox>

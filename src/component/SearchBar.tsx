@@ -6,9 +6,10 @@ import calendar from "@/assets/svg/calendar.svg";
 import search_blue from "@/assets/svg/search-blue.svg";
 import calendaer_blue from "@/assets/svg/calendar-blue.svg";
 import { TsearchBarList } from "@/types/type";
-import { filterStore } from "@/model/store";
+import { pageStore, filterStore } from "@/model/store";
 
-function SearchBar({page}: { page: string }) {
+function SearchBar() {
+	const page = pageStore( state => state.page);
 	const filterHome = filterStore(state=>state.filterHome);
 	const [list, setList] = useState<TsearchBarList[]>([ 
 		{ key: "Headline", svg: search, text: "전체 헤드라인", input: false }, 

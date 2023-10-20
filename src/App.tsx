@@ -3,21 +3,11 @@ import HomeScreen from "@/page/HomeScreen";
 import ScrapScreen from "./page/ScrapScreen";
 import Nav from "./component/Nav";
 import Modal from "./component/Modal";
-import { pageStore, filterStore } from "@/model/store";
+// import { pageStore, filterStore } from "@/model/store";
+import { pageStore } from "@/model/store";
 
 function App() {
 	const page = pageStore( state => state.page);
-	const setPage = pageStore( state => state.setPage)
-	const setFilterHome = filterStore( state => state.setFilterHome);
-
-	const pageHandler = (text: string) => {
-		if(text === "홈"){
-			setPage("home");
-		} else if( text === "스크랩"){
-			setPage("scrap");
-		}
-		setFilterHome({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
-	}
 
   return (
     <Apps>
@@ -25,11 +15,11 @@ function App() {
 				{
 					page === "home" ?
 						<HomeScreen/> :
-						<ScrapScreen pageHandler={pageHandler}/>
+						<ScrapScreen/>
 				}
-				<Nav page={page} pageHandler={pageHandler}/>
+				<Nav/>
 			</Section>
-			<Modal page={page}/>
+			<Modal/>
     </Apps>
   )
 }

@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/ui/Article";
-import { scrapStore } from "@/model/store";
+import { pageStore,filterStore, scrapStore } from "@/model/store";
 import { Tarticle } from "@/types/type";
 import Union from "@/assets/svg/Union.svg"
+import pageHandler from "@/hooks/pageHandler";
 
-function ScrapScreen({ pageHandler }:{pageHandler: (text: string) => void}){
+function ScrapScreen(){
+	const page = pageStore( state => state.page);
+	const setPage = pageStore( state => state.setPage)
+	const setFilter = filterStore( state => state );
 	const scrapList = scrapStore(state=>state.scrapList);
 
 	return (
@@ -27,7 +31,7 @@ function ScrapScreen({ pageHandler }:{pageHandler: (text: string) => void}){
 								저장된 스크랩이 없습니다.
 							</Text>
 						</IconBox>
-						<Btn onClick={()=>{pageHandler("홈")}}>
+						<Btn onClick={()=>{ pageHandler({page, setPage, setFilter}) }}>
 							스크랩 하러가기
 						</Btn>
 					</Wrapper>

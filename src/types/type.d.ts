@@ -1,11 +1,11 @@
-type TsearchBarList = {
+export type TsearchBarList = {
 	key: string;
 	svg: string;
 	text: string;
 	input: boolean;
 };
 
-type TarticleData = { 
+export type TarticleData = { 
 	headline: { main: string; }; 
 	source: string; 
 	byline: { original: string; }; 
@@ -14,7 +14,7 @@ type TarticleData = {
 	_id: string;
 }
 
-type Tarticle = {
+export type Tarticle = {
 	headline: string;
 	newspaper: string;
 	reporter: string;
@@ -23,18 +23,64 @@ type Tarticle = {
 	id: string;
 };
 
-
-type TnationList = {
+export type TnationList = {
 	nation: string;
 	isSelected: boolean;
 	en: string;
 };
 
-type TnavBtnData = {
+export type TnavBtnData = {
 	key: string;
 	svg: string;
 	text: string;
 }; 
 
+export type Tpage = {
+	page: string;
+	setPage: (input: string) => void;
+};
 
-export type { TsearchBarList, TarticleData, Tarticle, TnationList, TnavBtnData };
+export type TmodalStore = {
+	modalState: boolean;
+	setModalState: () => void;
+};
+
+export type TfilterStore = {
+	filterHome: {
+		headline: string;
+		date: string;
+		nation: string | TnationList[]
+	};
+
+	filterScrap: {
+		headline: string;
+		date: string;
+		nation: string | TnationList[]
+	};
+	
+	setFilterHome: (
+		input: {
+			headline: string;
+			date: string;
+			nation: string | TnationList[]
+	}) => void;
+
+	setFilterScrap: (
+		input: {
+			headline: string;
+			date: string;
+			nation: string | TnationList[]
+	}) => void;
+};
+
+export type TscrapStore = {
+	scrapList: Tarticle[];
+	addScrap: (input: Tarticle) => void;
+	removeScrap: (input: Tarticle[]) => void;
+};
+
+export type Tparams = {
+	page: string;
+	setPage: (input: string) => void;
+	setFilter: TfilterStore;
+};

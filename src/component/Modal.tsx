@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { modalStore, filterStore } from "@/model/store";
+import { modalStore, pageStore, filterStore } from "@/model/store";
 import { TnationList } from "@/types/type";
 
-function Modal({ page }: { page: string }) {
-	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
+const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
+
+function Modal() {
+	
+	const page = pageStore( state => state.page);
 	const modalState = modalStore( state => state.modalState);
-	// const filterHome = filterStore( state => state.filterHome);
 	const setFilterHome = filterStore( state => state.setFilterHome);
 	const setModalState = modalStore( state => state.setModalState);
+
 	const [headline, setHeadline] = useState<string>('');
 	const [date, setDate] = useState<string>('');
 	const [nation, setNation] = useState<TnationList[]>([ 
