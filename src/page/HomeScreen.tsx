@@ -8,6 +8,7 @@ import { Tarticle, TarticleData } from "@/types/type";
 import { serviceFormat } from "@/lib/fomatter";
 import Loading from "@/component/Loading";
 import Fetching from "@/component/Fetching";
+import Error from "@/component/Error";
 
 function HomeScreen() {
 	const fetchFn = ({ pageParam = 1}: { pageParam: number}) => getData(pageParam);
@@ -44,8 +45,9 @@ function HomeScreen() {
 		<>
 			<SearchBar/>
 			{isLoading ? <Loading/>:<></>}
+			<Error/>
 			<ArticleList>
-				{ data?.pages?.map( page => 
+				{/* { data?.pages?.map( page => 
 						page.map((el: TarticleData, index: number) => {
 							const article: Tarticle = {
 								headline: el.headline.main,
@@ -56,9 +58,8 @@ function HomeScreen() {
 								id: el._id
 							};
 							return <Article key={index} article={article}/>;
-				}))}
-				{isFetchingNextPage ? <Fetching/>:<></>}
-				{isError ? "에러 발생":<></>}
+				}))} */}
+				{/* {isFetchingNextPage ? <Fetching/>:<></>} */}
 				<div ref={loadingRef} />
 			</ArticleList>
 		</>

@@ -3,7 +3,6 @@ import HomeScreen from "@/page/HomeScreen";
 import ScrapScreen from "./page/ScrapScreen";
 import Nav from "./component/Nav";
 import Modal from "./component/Modal";
-// import { pageStore, filterStore } from "@/model/store";
 import { pageStore } from "@/model/store";
 
 function App() {
