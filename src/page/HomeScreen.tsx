@@ -45,9 +45,9 @@ function HomeScreen() {
 		<>
 			<SearchBar/>
 			{isLoading ? <Loading/>:<></>}
-			<Error/>
+			{isError ? <Error/>:<></>}
 			<ArticleList>
-				{/* { data?.pages?.map( page => 
+				{ data?.pages?.map( page => 
 						page.map((el: TarticleData, index: number) => {
 							const article: Tarticle = {
 								headline: el.headline.main,
@@ -58,8 +58,8 @@ function HomeScreen() {
 								id: el._id
 							};
 							return <Article key={index} article={article}/>;
-				}))} */}
-				{/* {isFetchingNextPage ? <Fetching/>:<></>} */}
+				}))}
+				{isFetchingNextPage ? <Fetching/>:<></>}
 				<div ref={loadingRef} />
 			</ArticleList>
 		</>

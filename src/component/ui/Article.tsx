@@ -30,8 +30,9 @@ function Article( { article } : { article: Tarticle}) {
 		const scrapCheck = scrapList.filter(el=>el.id ===id).length !==0 ? true: false;
 		
 		if( scrapCheck ){
-			removeScrap([...scrapList.filter((el:Tarticle)=>el.id!==id)]);
-			alert("스크랩이 해제되었습니다.");
+			if(window.confirm("스크랩을 해제하시겠습니까?")){
+				return removeScrap([...scrapList.filter((el:Tarticle)=>el.id!==id)]);
+			}
 		} else if( !scrapCheck ){
 			addScrap(article);
 		}

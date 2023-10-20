@@ -4,7 +4,7 @@ function Loading() {
 
   return (
     <Background key="loding">
-			로딩중...
+			Loading...
     </Background>
   )
 }
