@@ -29,7 +29,7 @@ function HomeScreen() {
 			staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 5,
 		});
-	
+	console.log(data);
 	useEffect(() => {
 		if (loadingRef.current && hasNextPage) {
 			const observer = new IntersectionObserver(

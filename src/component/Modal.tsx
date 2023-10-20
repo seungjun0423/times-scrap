@@ -38,15 +38,15 @@ function Modal() {
 		setHeadline('');
 		setDate('');
 		setNation([ 
-			{nation: "대한민국", isSelected: false, en: "south korea"},
-			{nation: "중국", isSelected: false, en: "china"}, 
-			{nation: "일본", isSelected: false, en: "japan"}, 
-			{nation: "미국", isSelected: false, en: "usa"}, 
-			{nation: "북한", isSelected: false, en: "north korea"}, 
-			{nation: "러시아", isSelected: false, en: "russia"}, 
-			{nation: "프랑스", isSelected: false, en: "france"}, 
-			{nation: "영국", isSelected: false, en: "england"}, 
-			{nation:"북한", isSelected: false, en: "north korea"}
+			{nation: "대한민국", isSelected: false, en: "South Korea"},
+			{nation: "중국", isSelected: false, en: "China"}, 
+			{nation: "일본", isSelected: false, en: "Japan"}, 
+			{nation: "미국", isSelected: false, en: 'United States'}, 
+			{nation: "북한", isSelected: false, en: "North Korea"}, 
+			{nation: "러시아", isSelected: false, en: "Russia"}, 
+			{nation: "프랑스", isSelected: false, en: "France"}, 
+			{nation: "영국", isSelected: false, en: "England"}, 
+			{nation:"북한", isSelected: false, en: "North Korea"}
 		]);
 	}, [page])
 

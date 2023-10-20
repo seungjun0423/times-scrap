@@ -12,7 +12,6 @@ function ScrapScreen(){
 	/** 로컬에 저장된 scrap 값 */
 	const scrapList = scrapStore(state=>state.scrapList);
 	const filterScrap = filterStore(state=>state.filterScrap);
-	// const [filtered, setFiltered] = useState<Tarticle[] | null>(null);
 	const filtered = filtering(state=>state.filtered);
 	const setFiltered = filtering(state=>state.setFiltered);
 
@@ -28,7 +27,6 @@ function ScrapScreen(){
 					return upperEl.includes( upperFilter );
 				});
 			
-				// headlineFilter.map(el=>filtered.push(el));
 				setFiltered(headlineFilter);
 			}
 			if(filterScrap.date !== '전체 날짜'){
