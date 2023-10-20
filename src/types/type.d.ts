@@ -45,32 +45,20 @@ export type TmodalStore = {
 	setModalState: () => void;
 };
 
+export type TfilterState = {
+	headline: string;
+	date: string;
+	nation: string | TnationList[]
+}
+
 export type TfilterStore = {
-	filterHome: {
-		headline: string;
-		date: string;
-		nation: string | TnationList[]
-	};
+	filterHome: TfilterState
 
-	filterScrap: {
-		headline: string;
-		date: string;
-		nation: string | TnationList[]
-	};
+	filterScrap: TfilterState
 	
-	setFilterHome: (
-		input: {
-			headline: string;
-			date: string;
-			nation: string | TnationList[]
-	}) => void;
+	setFilterHome: (input: TfilterState) => void;
 
-	setFilterScrap: (
-		input: {
-			headline: string;
-			date: string;
-			nation: string | TnationList[]
-	}) => void;
+	setFilterScrap: (input: TfilterState) => void;
 };
 
 export type TscrapStore = {
