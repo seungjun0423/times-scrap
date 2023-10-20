@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { modalStore, pageStore, filterStore } from "@/model/store";
+import { modalStore, pageStore, filterStore, filtering } from "@/model/store";
 import { TnationList } from "@/types/type";
 
 const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
@@ -11,6 +11,7 @@ function Modal() {
 	const setFilterHome = filterStore( state => state.setFilterHome);
 	const setFilterScrap = filterStore( state => state.setFilterScrap);
 	const setModalState = modalStore( state => state.setModalState);
+	const setFiltered = filtering(state=>state.setFiltered);
 
 	const [headline, setHeadline] = useState<string>('');
 	const [date, setDate] = useState<string>('');
@@ -60,8 +61,10 @@ function Modal() {
 		})]);
 		if( page === 'home'){
 			setFilterHome({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+			setFiltered(null);
 		} else if( page === 'scrap'){
 			setFilterScrap({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
+			setFiltered(null);
 		}
 		setModalState();
 	};

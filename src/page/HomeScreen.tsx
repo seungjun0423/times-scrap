@@ -25,7 +25,8 @@ function HomeScreen() {
 			queryKey:['todayHeadline'], 
 			queryFn: ({pageParam})=>fetchFn({pageParam}), 
       getNextPageParam: ( _lastPage, allPages ) => Number(allPages.length)+1,
-      cacheTime: 1000 * 60 * 5
+			staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 5,
 		});
 	
 	useEffect(() => {
@@ -40,7 +41,7 @@ function HomeScreen() {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [hasNextPage]);
-
+	
   return (
 		<>
 			<SearchBar/>

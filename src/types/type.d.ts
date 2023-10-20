@@ -71,3 +71,8 @@ export type Tparams = {
 	text: string;
 	setPage: (input: string) => void;
 };
+
+export type Tfiltered = {
+	filtered: null | Tarticle[];
+	setFiltered: (input: Tarticle[]|null) => void;
+};

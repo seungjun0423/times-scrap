@@ -3,7 +3,7 @@ import styled from "styled-components";
 import star from "@/assets/svg/subtract.svg";
 import star_fill from "@/assets/svg/star-fill.svg"
 import { Tarticle } from "@/types/type";
-import { scrapStore } from "@/model/store";
+import { scrapStore, filtering } from "@/model/store";
 
 function Article( { article } : { article: Tarticle}) {
 	const { headline, newspaper, reporter, pubDate, url, id } = article;
@@ -11,8 +11,11 @@ function Article( { article } : { article: Tarticle}) {
 	const scrapList = scrapStore(state=>state.scrapList);
 	const addScrap = scrapStore(state=>state.addScrap);
 	const removeScrap = scrapStore(state=>state.removeScrap);
+	const filtered = filtering(state=>state.filtered);
+	const setFiltered = filtering(state=>state.setFiltered);
 
 	useLayoutEffect(() => {
+		// console.log(article);
 		const scrapCheck = scrapList.filter(el=>el.id ===id).length !==0 ? true: false;
 
 		if( scrapCheck ){
@@ -28,10 +31,14 @@ function Article( { article } : { article: Tarticle}) {
 
 	const scrapHandler = () => {
 		const scrapCheck = scrapList.filter(el=>el.id ===id).length !==0 ? true: false;
-		
 		if( scrapCheck ){
 			if(window.confirm("스크랩을 해제하시겠습니까?")){
-				return removeScrap([...scrapList.filter((el:Tarticle)=>el.id!==id)]);
+				removeScrap([...scrapList.filter((el:Tarticle)=>el.id!==id)]);
+				if(filtered !== null){
+					setFiltered([...filtered.filter((el:Tarticle)=>el.id!==id)]);
+				}
+			} else {
+				return;
 			}
 		} else if( !scrapCheck ){
 			addScrap(article);

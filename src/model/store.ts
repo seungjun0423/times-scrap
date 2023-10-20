@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { TfilterStore, TmodalStore, Tpage, TscrapStore } from '@/types/type';
+import { Tarticle,TfilterStore, Tfiltered, TmodalStore, Tpage, TscrapStore } from '@/types/type';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 const pageStore = create<Tpage>((set) => ({
@@ -27,6 +27,12 @@ const filterStore = create<TfilterStore>((set) => ({
 	setFilterScrap: (input) => set({filterScrap: input}),
 }));
 
+const filtering = create<Tfiltered>((set) => ({
+	filtered: null,
+	setFiltered: (input:Tarticle[]| null) => set(({filtered: input!==null ?[...input]:null})),
+}));
+
+
 /** localStorage */
 const scrapStore = create(
   persist<TscrapStore>(
@@ -40,5 +46,5 @@ const scrapStore = create(
       storage: createJSONStorage(() => localStorage), 
     }
   )
-)
-export { pageStore, modalStore, filterStore, scrapStore };
+);
+export { pageStore, modalStore, filterStore, scrapStore,filtering };
