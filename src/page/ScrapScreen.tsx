@@ -39,10 +39,10 @@ function ScrapScreen(){
 					setFiltered([...new Set([...dateFilter])]);
 				}
 			}
-			// if(filterScrap.nation !== '전체 국가' || filterScrap.nation.length !== 0){
+			if(filterScrap.nation !== '전체 국가' || filterScrap.nation.length !== 0){
 		
 				// setFiltered(filtered);
-			// }
+			}
 		}
 	}, [filterScrap]);
 	

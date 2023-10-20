@@ -4,16 +4,17 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import SearchBar from "@/component/SearchBar";
 import Article from "@/component/ui/Article";
 import { getData } from "@/api/api"; 
-import { Tarticle, TarticleData } from "@/types/type";
+import { Tarticle, TarticleData, TfilterState } from "@/types/type";
 import { serviceFormat } from "@/lib/fomatter";
 import Loading from "@/component/Loading";
 import Fetching from "@/component/Fetching";
 import Error from "@/component/Error";
+import { filterStore } from "@/model/store";
 
 function HomeScreen() {
-	const fetchFn = ({ pageParam = 1}: { pageParam: number}) => getData(pageParam);
+	const fetchFn = ({ pageParam = 1}: { pageParam: number}, filterHome:TfilterState) => getData({pageParam}, filterHome);
 	const loadingRef = useRef<HTMLDivElement>(null);
-
+	const filterHome = filterStore(state=>state.filterHome);
 	const {
     data,
 		isLoading,
@@ -23,7 +24,7 @@ function HomeScreen() {
     hasNextPage,
   } = useInfiniteQuery({
 			queryKey:['todayHeadline'], 
-			queryFn: ({pageParam})=>fetchFn({pageParam}), 
+			queryFn: ({pageParam})=>fetchFn({pageParam}, filterHome ), 
       getNextPageParam: ( _lastPage, allPages ) => Number(allPages.length)+1,
 			staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 5,

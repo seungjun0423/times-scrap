@@ -3,41 +3,41 @@ import axios from "axios";
 import { getMonthDate } from "@/lib/fomatter";
 const { VITE_API_URL, VITE_API_KEY } = import.meta.env;
 
-/*
-const getFilterd = ( date, headLine, nation ) => {
-	const req = axios.get(
-		`${VITE_API_URL}fq=pub_date:(${date}) 
-		OR headline:(${headLine}) 
-		OR glocations:(${nation})
-		&api-key=${VITE_API_KEY}`
-	).then( res => res.data.response.docs)
-	return req;
-};
-OR glocations:("south korea")
-		OR glocations:("china")
-		OR glocations:("japan")
-		OR glocations:("usa")
-		OR glocations:("north korea")
-		OR glocations:("russia")
-		OR glocations:("france")
-		OR glocations:("england")
-*/
-
-
-const getFilterdData = ( {headline, date, nation}: TfilterState ): Promise<TarticleData[]> => {
-	const req = axios.get(
-		`${VITE_API_URL}fq=headline:(${headline}) AND pub_date:(${date}) AND glocations:(${nation})&api-key=${VITE_API_KEY}`
-	).then( res => res.data.response.docs)
-	return req;
-};
-
 /**Parameter: (date: YYYY-MM-DD), 단일 파라미터 date 값을 인자로 받으며 YYYY-MM-DD 포맷의 형태로 받는다.   */
-const getData = ( pageParam: number ): Promise<TarticleData[]> => {
-	const dateList = [...getMonthDate()];
-	const req = axios.get(
-		`${VITE_API_URL}page=${pageParam}&fq=pub_date:(${dateList[pageParam]})&api-key=${VITE_API_KEY}`
-	).then( res => res.data.response.docs);
-	return req;
+const getData = ( {pageParam}:{pageParam:number},{headline, date, nation}:TfilterState ): Promise<TarticleData[]> => {
+	if( (headline==='전체 헤드라인') && (date === '전체 날짜') && (nation === '전체 국가') ){
+
+		const dateList = [...getMonthDate()];
+		const req = axios.get(
+			`${VITE_API_URL}page=${pageParam}&fq=pub_date:(${dateList[pageParam]})&api-key=${VITE_API_KEY}`
+			).then( res => res.data.response.docs);
+			return req;
+	} else {
+		let url:string = ''
+		if(headline !== '전체 헤드라인'){
+			url += `headline:(${headline}) AND `;
+		}
+		if(date !== '전체 날짜'){
+			url += `pub_date:(${date}) AND `;
+		}
+		if( (nation !== '전체 국가') && (typeof nation=== 'string')){
+			url += `glocations:(${nation})`
+		} else if( (nation !== '전체 국가') && (typeof nation === 'object')){
+			let str: string = '';
+			for(let i=0;i<nation.length;i++){
+				if(i !== nation.length-1){
+					str += `glocations:(${nation[i]}) AND `;
+				} else {
+					str += `glocations:(${nation[i]})`;
+				}
+			}
+			url += str;
+		}
+		const req = axios.get(
+			`${VITE_API_URL}fq=${url}&api-key=${VITE_API_KEY}`
+		).then( res => res.data.response.docs)
+		return req;
+	}
 };
 
-export { getData, getFilterdData };
+export { getData };
