@@ -37,9 +37,11 @@ function ScrapScreen(){
 					setFiltered([...new Set([...dateFilter])]);
 				}
 			}
-			if(filterScrap.nation !== '전체 국가' || filterScrap.nation.length !== 0){
-		
-				// setFiltered(filtered);
+			if(filterScrap.nation !== '전체 국가' && filterScrap.nation.length !== 0){
+				const targets = filterScrap.nation;
+				const list = scrapList.filter(el=>el.keywords);
+				const data = targets.map((target)=>{return list.filter(el=>target.en === el.keywords.value)[0]})
+				setFiltered([...data]);
 			}
 		}
 	}, [filterScrap]);

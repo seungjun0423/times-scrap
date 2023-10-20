@@ -5,6 +5,11 @@ export type TsearchBarList = {
 	input: boolean;
 };
 
+export type Tkeywords = {
+	name: string;
+	value: string
+}
+
 export type TarticleData = { 
 	headline: { main: string; }; 
 	source: string; 
@@ -12,6 +17,7 @@ export type TarticleData = {
 	pub_date: string; 
 	web_url: string;
 	_id: string;
+	keywords: Tkeywords[];
 }
 
 export type Tarticle = {
@@ -21,6 +27,7 @@ export type Tarticle = {
 	pubDate: string;
 	url: string;
 	id: string;
+	keywords: Tkeywords;
 };
 
 export type TnationList = {

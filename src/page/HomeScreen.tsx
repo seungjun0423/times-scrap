@@ -29,7 +29,7 @@ function HomeScreen() {
 			staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 5,
 		});
-	console.log(data);
+
 	useEffect(() => {
 		if (loadingRef.current && hasNextPage) {
 			const observer = new IntersectionObserver(
@@ -57,7 +57,8 @@ function HomeScreen() {
 								reporter: el.byline.original,
 								pubDate: serviceFormat(el.pub_date),
 								url: el.web_url,
-								id: el._id
+								id: el._id,
+								keywords: {name: (el?.keywords.filter(el=>el?.name=== 'glocations')[0]?.name) as string, value: (el?.keywords.filter(el=>el.name=== 'glocations')[0]?.value) as string},
 							};
 							return <Article key={index} article={article}/>;
 				}))}

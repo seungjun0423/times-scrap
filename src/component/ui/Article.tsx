@@ -15,7 +15,6 @@ function Article( { article } : { article: Tarticle}) {
 	const setFiltered = filtering(state=>state.setFiltered);
 
 	useLayoutEffect(() => {
-		// console.log(article);
 		const scrapCheck = scrapList.filter(el=>el.id ===id).length !==0 ? true: false;
 
 		if( scrapCheck ){
