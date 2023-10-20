@@ -24,10 +24,9 @@ function HomeScreen() {
 			queryKey:['todayHeadline'], 
 			queryFn: ({pageParam})=>fetchFn({pageParam}), 
       getNextPageParam: ( _lastPage, allPages ) => Number(allPages.length)+1,
-			staleTime: 1000 *60 * 5,
       cacheTime: 1000 * 60 * 5
 		});
-
+	
 	useEffect(() => {
 		if (loadingRef.current && hasNextPage) {
 			const observer = new IntersectionObserver(

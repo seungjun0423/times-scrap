@@ -24,8 +24,8 @@ function App() {
 			<Section id='section'>
 				{
 					page === "home" ?
-					<HomeScreen/> :
-					<ScrapScreen pageHandler={pageHandler}/>
+						<HomeScreen/> :
+						<ScrapScreen pageHandler={pageHandler}/>
 				}
 				<Nav page={page} pageHandler={pageHandler}/>
 			</Section>

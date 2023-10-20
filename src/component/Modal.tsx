@@ -6,6 +6,7 @@ import { TnationList } from "@/types/type";
 function Modal({ page }: { page: string }) {
 	const labels: string[] = [ "헤드라인", "날짜", "국가", "필터적용하기"];
 	const modalState = modalStore( state => state.modalState);
+	const filterState = filterStore( state => state.filterState);
 	const setFilterState = filterStore( state => state.setFilterState);
 	const setModalState = modalStore( state => state.setModalState);
 	const [headline, setHeadline] = useState<string>('');
@@ -28,7 +29,10 @@ function Modal({ page }: { page: string }) {
 		setModalHeight(`${homescreenHeight}px`);
 	}, [homescreenHeight])
 
+	// 페이지 이동시 Modal 창 초기화
 	useEffect(() => {
+		setHeadline('');
+		setDate('');
 		setNation([ 
 			{nation: "대한민국", isSelected: false, en: "south korea"},
 			{nation: "중국", isSelected: false, en: "china"}, 
@@ -40,19 +44,8 @@ function Modal({ page }: { page: string }) {
 			{nation: "영국", isSelected: false, en: "england"}, 
 			{nation:"북한", isSelected: false, en: "north korea"}
 		]);
+		console.log(filterState);
 	}, [page])
-	
-
-	const headlineHandler = ( input: string) => {
-		// eslint-disable-next-line no-useless-escape
-		const onlyEn = new RegExp(/^[A-Za-z0-9\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);    
-
-		if(!onlyEn.test(input)){
-			alert("현재는 영문 검색만 가능합니다.")
-		} else {
-			setHeadline(input);
-		}
-	};
 
 	/** blank click handler : 모달창 이외 클릭시 모달창 종료 */
 	const bClickHandler = () => {
@@ -65,7 +58,20 @@ function Modal({ page }: { page: string }) {
 		})]);
 		setFilterState({headline: '전체 헤드라인', date: '전체 날짜', nation: '전체 국가'});
 		setModalState();
-	}
+	};
+
+	/** headline input handler */
+	const hInputHandler = ( input: string) => {
+		// eslint-disable-next-line no-useless-escape
+		const onlyEn = new RegExp(/^[A-Za-z0-9\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/);    
+
+		if(!onlyEn.test(input)){
+			alert("현재는 영문 검색만 가능합니다.")
+		} else {
+			setHeadline(input);
+		}
+	};
+
 
 	/** nation select handler : 국가 선택 기능 */
 	const nSelectHandler = ( index: number ) => {
@@ -96,8 +102,8 @@ function Modal({ page }: { page: string }) {
 						</Label>
 						<InputHeadline
 							value={headline}
-							onChange={ e =>{
-								headlineHandler(e.target.value);
+							onChange={ (e) =>{
+								hInputHandler(e.target.value);
 							}}
 							autoFocus={true}
 						/>
@@ -288,7 +294,6 @@ const Div = styled.div`
 	color: #FFFFFF;
 	font-size: 16px;
 	font-weight: 600;
-	/* font-weight: 400; */
 	line-height: 24px;
 	letter-spacing: -0.05em;
 	text-align: center;

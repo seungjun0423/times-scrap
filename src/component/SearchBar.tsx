@@ -14,7 +14,7 @@ function SearchBar() {
 		{ key: "Headline", svg: search, text: "전체 헤드라인", input: false }, 
 		{ key: "Date", svg: calendar, text: "전체 날짜", input: false }, 
 		{ key: "Nation", svg: "", text: "전체 국가", input: false }, 
-	])
+	]);
 
 	useLayoutEffect(() => {
 		const headlineState = filterState.headline ? filterState.headline:"전체 헤드라인";
@@ -42,8 +42,7 @@ function SearchBar() {
 			{ key: "Date", svg: calendarIcon, text: dateState, input: dateInput }, 
 			{ key: "Nation", svg: "", text: nationState, input: nationInput }, 
 		])
-	}, [filterState])
-	
+	}, [filterState]);
 
   return (
     <SearchBox>

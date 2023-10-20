@@ -12,6 +12,7 @@ function Nav({ page, pageHandler }: { page: string, pageHandler: (text: string) 
 		{key: "home", svg: home_white, text: "홈"},
 		{key: "scrap",svg: scrap_gray, text: "스크랩"}
 	]);
+
 	useEffect(() => {
 		if( page === "home"){
 			setNavBtnData([
@@ -30,7 +31,7 @@ function Nav({ page, pageHandler }: { page: string, pageHandler: (text: string) 
 		<NavBox>
 			<IconBox>
 				{ navBtnData.map( (el: TnavBtnData)=>{
-					return 	<NavBtn key={el.key} svg={el.svg} text={el.text} pageHandler={pageHandler}/>
+					return 	<NavBtn key={el.key} svg={el.svg} page={page} text={el.text} pageHandler={pageHandler}/>
 				})
 				}
 			</IconBox>
