@@ -82,5 +82,4 @@ export type TscrapStore = {
 export type Tparams = {
 	text: string;
 	setPage: (input: string) => void;
-	setFilter: TfilterStore;
 };

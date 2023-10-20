@@ -24,7 +24,7 @@ const filterStore = create<TfilterStore>((set) => ({
 		nation: '전체 국가',
 	},
 	setFilterHome: (input) => set({filterHome: input}),
-	setFilterScrap: (input) => set({filterHome: input}),
+	setFilterScrap: (input) => set({filterScrap: input}),
 }));
 
 /** localStorage */

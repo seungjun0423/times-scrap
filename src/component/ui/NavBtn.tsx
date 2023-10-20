@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { TnavBtnData } from "@/types/type";
-import { filterStore, pageStore } from "@/model/store";
+import { pageStore } from "@/model/store";
 import pageHandler from "@/hooks/pageHandler";
 
 function NavBtn( { svg, text, }: TnavBtnData ) {
 	const page = pageStore( state => state.page);
 	const setPage = pageStore( state => state.setPage)
-	const setFilter = filterStore( state => state );
 
 	return (
-		<Btn onClick={()=>{pageHandler({text, setPage, setFilter})}}>
+		<Btn onClick={()=>{pageHandler({text, setPage})}}>
 			<Icon src={svg}/>
 			<Text $isSelected={ (page==="home" && text==="홈") || (page==="scrap" && text==="스크랩")}>
 				{text}

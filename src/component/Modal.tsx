@@ -93,10 +93,8 @@ function Modal() {
 			nation: nation.filter(el=> el.isSelected).length !== 0 ? [...nation.filter(el=> el.isSelected)] : '전체 국가',
 		};
 		if( page === 'home'){
-			console.log("여기는 홈",filterData);
 			setFilterHome(filterData);
 		} else if( page === 'scrap'){
-			console.log("여기는 스크랩",filterData);
 			setFilterScrap(filterData);
 		}
 		setModalState();
